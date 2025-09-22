@@ -34,3 +34,4 @@
 
 # Hosting
 - Hosted on netlify
+- opiyotech.netlify.app
