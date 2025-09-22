@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opiyo Portfolio Website</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
+    <header class="header">
+      <a href="#home" class="logo">Opiyo
+        <span>Nickson</span>
+      </a>
+
+    <i class="bx bx-menu" id="menu-icon"></i>
+
+    <nav class="navbar">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact Me</a>
+    </nav>
+
+    </header>
+
+    <section class="home" id="home">
+
+      <div class="home-content">
+        <h1>Hi, it's <span>Opiyo</span></h1>
+        <h3>An aspiring <span>IT professional</span> specializing in <span>Software Engineering</span></h3>
+        <p>I am a dedicated and detail-oriented software profession with hands-on experience in developing scalable, database-driven desktop applications, Websites and Mobile Applications.</p>
+        <div class="social-icons">
+          <a href="https://github.com/Tech-Savvy-code" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/opiyo-nickson-b7a673354/" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-linkedin-square"></i>
+          </a>
+          <a href="https://www.instagram.com/nicks4691/" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-instagram-alt"></i>
+          </a>
+          <a href="https://x.com/OpiyoNickson01" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-twitter"></i>
+          </a>
+        </div>
+        <div class="btn-group">
+          <a href="mailto:opiyonick243@gmail.com" class="btn">Hire</a>
+          <a href="#contact" class="btn">Contact</a>
+        </div>
+      </div>
+
+      <div class="home-image">
+        <img src="assets/me.jpg" alt="">
+      </div>
+
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-img">
+        <img src="assets/me.jpg" alt="">
+      </div>
+      <div class="about-content">
+        <h2>About <span>Me</span></h2>
+        <p>I'm Opiyo Nickson, a tech-savvy IT specialist with a love for problem-solving through code. My skills lie in full-stack web development, mobile app creation, and providing hands-on IT support. From leading a team on a university project to freelancing for various clients, I enjoy every step of the development process—from design to deployment. I'm fluent in Java, Python, and JavaScript and am constantly learning new technologies to stay at the forefront of the industry. My goal is to leverage technology to build solutions that make a difference.</p>
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn">Résumé</a>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <h2 class="heading">Services</h2>
+
+      <div class="services-container">
+        <div class="service-box">
+          <div class="service-info">
+            <i class="bx bxs-devices"></i>
+            <h4>Software Development</h4>
+            <p>I Develop applications, systems, and software solutions using programming languages ie, (Java, Python).
+                I handle both Front-end, Back-end, Full-stack website development and Mobile applicatios.</p>
+          </div>
+        </div>
+
+        <div class="service-box">
+          <div class="service-info">
+            <i class="bx bx-code"></i>
+            <h4>Networking & Infrastructure</h4>
+            <p>I manage LAN/WAN networks, routers, and switches.Maintain servers, operating systems (windows, ubuntu ,kali linux), and IT infrastructure.I also focuses on securing network systems from threats.</p>
+          </div>
+        </div>
+
+        <div class="service-box">
+          <div class="service-info">
+            <i class="bx bx-code-curly"></i>
+            <h4>IT Support & Operations</h4>
+            <p>I troubleshoot hardware/software issues for end-users.Install, repair, and maintain IT equipments.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2>Contact <span>Me</span></h2>
+
+      <form name="contact" method="POST" data-netlify="true" id="contact-form" netlify>
+            <input type="hidden" name="form-name" value="contact">
+        <div class="input-group">
+          <div class="input-box">
+            <input type="text" name="full_name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+          </div>
+          <div class="input-box">
+            <input type="tel" name="phone" placeholder="Phone number" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+          </div>
+        </div>
+
+        <div class="input-group-2">
+            <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message" required></textarea>
+            <input type="submit" value="Send Message" class="btn">
+        </div>
+      </form>
+
+      <div id="form-success" style="display: none; color: green; margin-top: 20px;">
+        ✅ Message sent successfully!
+      </div>
+
+    </section>
+
+    <footer class="footer">
+        <div class="social-icons">
+          <a href="https://github.com/Tech-Savvy-code" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/opiyo-nickson-b7a673354/" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-linkedin-square"></i>
+          </a>
+          <a href="https://www.instagram.com/nicks4691/" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-instagram-alt"></i>
+          </a>
+          <a href="https://x.com/OpiyoNickson01" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-twitter"></i>
+          </a>
+        </div>
+
+        <ul class="list">
+          <li>
+            <a href="#">FAQ</a>
+          </li>
+          <li>
+            <a href="#services">Services</a>
+          </li>
+          <li>
+            <a href="#about">About Me</a>
+          </li>
+          <li>
+            <a href="#contact">Contact Me</a>
+          </li>
+        </ul>
+
+        <p class="copyright">
+          @ Opiyo Nickson | All rights reserved 
+        </p>
+    </footer>
+
+    <script>
+      const form = document.getElementById('contact-form');
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        })
+        .then(() => {
+          form.reset();
+
+          // Success Toast
+          Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: 'success',
+            title: 'Message sent successfully!',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          });
+        })
+        .catch((error) => {
+          // Error Toast
+          Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: 'error',
+            title: 'Submission failed. Please try again!',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true
+          });
+        });
+      });
+    </script>
+
+  </body>
+</html>
