@@ -107,7 +107,7 @@
     <section class="contact" id="contact">
       <h2>Contact <span>Me</span></h2>
 
-      <form name="contact" method="POST" data-netlify="true" id="contact-form" netlify>
+      <form name="contact" method="POST" id="contact-form" netlify>
             <input type="hidden" name="form-name" value="contact">
         <div class="input-group">
           <div class="input-box">
@@ -214,5 +214,15 @@
       });
     </script>
 
+
+    <!-- Hidden Netlify Form -->
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="full_name"/>
+    <input type="email" name="email"/>
+    <input type="tel" name="phone"/>
+    <input type="text" name="subject"/>
+    <textarea name="message"></textarea>
+  </form>
+  
   </body>
 </html>
