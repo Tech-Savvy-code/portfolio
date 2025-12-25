@@ -471,13 +471,14 @@ section {
 /* ===== Project Cards ===== */
 .project-card {
   background-color: var(--second-bg-color);
-  border-radius: 3rem;
+  border-radius: 2.5rem;
   overflow: hidden;
   box-shadow: 0 0 25px rgba(0, 255, 81, 0.15);
   transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
   text-align: center;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
 }
+
 
 .project-card:hover {
   transform: translateY(-15px);
@@ -491,17 +492,15 @@ section {
 
 /* ===== Project Icons ===== */
 .project-icon {
-  font-size: 6rem;
-  width: 120px;
-  height: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto 2rem auto;
+  font-size: 4.5rem;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 1.5rem auto;
   border-radius: 50%;
   transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
 }
+
 
 .tusome-icon {
   background: linear-gradient(135deg, #00ff51, #00c3ff);
@@ -520,19 +519,20 @@ section {
 
 /* ===== Project Info ===== */
 .project-info {
-  padding: 2.5rem;
+  padding: 2rem 2.2rem;
 }
 
+
 .project-info h3 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 2.4rem;
+  margin-bottom: 0.8rem;
   color: var(--main-color);
 }
 
 .project-info p {
-  font-size: 1.6rem;
-  line-height: 1.7;
-  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  margin-bottom: 1.6rem;
 }
 
 .project-links {
