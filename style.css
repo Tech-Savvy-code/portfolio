@@ -60,8 +60,25 @@ body {
   transform: scale(1.1);
 }
 
-span {
-  color: var(--main-color);
+/* ===== SPAN COLORS ===== */
+span.name {
+  color: #00ff51; /* green for your name */
+}
+
+span.role {
+  color: #00c3ff; /* blue for main role */
+}
+
+span.specialization {
+  color: #ff9900; /* orange for specialization */
+}
+
+span.technology {
+  color: #8e2de2; /* purple for technologies */
+}
+
+span.solution {
+  color: #ff3366; /* pink for IT solutions or apps */
 }
 
 .navbar a {
