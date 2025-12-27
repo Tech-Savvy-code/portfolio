@@ -61,9 +61,32 @@ body {
 }
 
 /* ===== SPAN COLORS ===== */
-span.name {
-  color: #00ff51; /* green for your name */
+/* ===== NAME ANIMATION (MULTI-COLOR TECH GLOW) ===== */
+.name {
+  position: relative;
+  animation: namePulse 4s ease-in-out infinite;
+  font-weight: 700;
 }
+
+@keyframes namePulse {
+  0% {
+    color: #00ff51; /* neon green */
+    text-shadow: 0 0 6px rgba(0, 255, 81, 0.4);
+  }
+
+  50% {
+    color: #20c997; /* teal */
+    text-shadow:
+      0 0 15px rgba(32, 201, 151, 0.8),
+      0 0 30px rgba(32, 201, 151, 0.6);
+  }
+
+  100% {
+    color: #f4c430; /* soft gold */
+    text-shadow: 0 0 12px rgba(244, 196, 48, 0.7);
+  }
+}
+
 
 span.role {
   color: #00c3ff; /* blue for main role */
