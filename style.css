@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +25,14 @@ html {
 body {
   background: var(--bg-color);
   color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, .heading {
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
 }
 
 /* ===== HEADER ===== */
@@ -65,7 +74,9 @@ body {
 .name {
   position: relative;
   animation: namePulse 4s ease-in-out infinite;
-  font-weight: 700;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
 @keyframes namePulse {
@@ -140,20 +151,21 @@ section {
 }
 
 .home-content h1 {
-  font-size: 8rem;
-  font-weight: 700;
+  font-size: 6rem;
+  font-weight: 800;
   margin-top: 1.5rem;
   line-height: 1;
 }
 
 .home-content h3 {
-  font-size: 4rem;
+  font-size: 2.6rem;
+  font-weight: 600;
   margin: 1rem 0;
 }
 
 .home-content p {
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 1.6rem;
+  font-weight: 600px;
   line-height: 1.8;
 }
 
@@ -191,6 +203,7 @@ section {
   transform: scale(1.2) translateY(-5px);
   box-shadow: 0 0 25px var(--main-color);
 }
+
 
 /* ===== BUTTONS ===== */
 .btn-group {
@@ -271,6 +284,11 @@ section {
 .about-content .btn {
   margin: 3rem 0;
 }
+.about-content p span {
+  color: #00ffcc; /* or any appealing color */
+  font-weight: 600; /* optional: make it stand out */
+}
+
 
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar {

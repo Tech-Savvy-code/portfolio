@@ -51,19 +51,36 @@ I design and build
 
 
         <div class="social-icons">
-          <a href="https://github.com/Tech-Savvy-code" target="_blank" rel="noopener noreferrer">
-            <i class="bx bxl-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/opiyo-nickson-b7a673354/" target="_blank" rel="noopener noreferrer">
-            <i class="bx bxl-linkedin-square"></i>
-          </a>
-          <a href="https://www.instagram.com/nicks4691/" target="_blank" rel="noopener noreferrer">
-            <i class="bx bxl-instagram-alt"></i>
-          </a>
-          <a href="https://x.com/OpiyoNickson01" target="_blank" rel="noopener noreferrer">
-            <i class="bx bxl-twitter"></i>
-          </a>
-        </div>
+  <!-- Always visible icons -->
+  <a href="https://www.facebook.com/profile.php?id=100085057493772" target="_blank" rel="noopener noreferrer">
+    <i class="bx bxl-facebook"></i>
+  </a>
+  <a href="https://wa.me/254742882232?text=Hello%20Opiyo!" target="_blank" rel="noopener noreferrer">
+    <i class="bx bxl-whatsapp"></i>
+  </a>
+  <a href="https://github.com/Tech-Savvy-code" target="_blank" rel="noopener noreferrer">
+    <i class="bx bxl-github"></i>
+  </a>
+
+  <!-- Hidden icons initially -->
+  <div class="more-icons" style="display: none;">
+    <a href="https://www.linkedin.com/in/opiyo-nickson-b7a673354/" target="_blank" rel="noopener noreferrer">
+      <i class="bx bxl-linkedin-square"></i>
+    </a>
+    <a href="https://www.instagram.com/nicks4691/" target="_blank" rel="noopener noreferrer">
+      <i class="bx bxl-instagram-alt"></i>
+    </a>
+    <a href="https://x.com/OpiyoNickson01" target="_blank" rel="noopener noreferrer">
+      <i class="bx bxl-twitter"></i>
+    </a>
+  </div>
+
+  <!-- Toggle button -->
+  <a href="#" id="toggle-more" class="btn-more">
+    <i class="bx bx-dots-horizontal-rounded"></i>
+  </a>
+</div>
+
        <div class="btn-group">
   <a href="#projects" class="btn primary-btn">View Projects</a>
   <a href="assets/resume.pdf" target="_blank" class="btn secondary-btn">Download CV</a>
@@ -76,17 +93,38 @@ I design and build
       </div>
 
     </section>
+<section class="about" id="about">
+  <div class="about-img">
+    <img src="assets/me.jpg" alt="Opiyo Nickson">
+  </div>
 
-    <section class="about" id="about">
-      <div class="about-img">
-        <img src="assets/me.jpg" alt="">
-      </div>
-      <div class="about-content">
-        <h2>About <span>Me</span></h2>
-        <p>I'm Opiyo Nickson, a tech-savvy IT specialist with a love for problem-solving through code. My skills lie in full-stack web development, mobile app creation, and providing hands-on IT support. From leading a team on a university project to freelancing for various clients, I enjoy every step of the development process—from design to deployment. I'm fluent in Java, Python, and JavaScript and am constantly learning new technologies to stay at the forefront of the industry. My goal is to leverage technology to build solutions that make a difference.</p>
-        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn">Résumé</a>
-      </div>
-    </section>
+  <div class="about-content">
+    <h2>About <span>Me</span></h2>
+
+    <p>
+      I'm <span>Opiyo Nickson</span>, an <span>Android & Web Developer</span> and <span>IT Systems Specialist</span>
+      with a strong passion for building practical, user-focused digital solutions.
+    </p>
+
+    <p>
+      I specialize in developing <span>Android applications</span>, <span>web-based systems</span>,
+      and providing <span>hands-on IT support</span>. I’ve worked on university-level systems,
+      real-world mobile apps, and freelance projects—taking ideas from
+      <span>design</span> through <span>development</span> to <span>deployment</span>.
+    </p>
+
+    <p>
+      My technical stack includes <span>Java</span>, <span>Python</span>, <span>JavaScript</span>,
+      and modern frameworks and tools. I enjoy continuous learning and aim to
+      build scalable solutions that solve real-world problems.
+    </p>
+
+    <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn">
+      View Résumé
+    </a>
+  </div>
+</section>
+
 
     <section class="services" id="services">
       <h2 class="heading">Services</h2>
@@ -283,6 +321,11 @@ I design and build
 
     <footer class="footer">
         <div class="social-icons">
+             <a href="https://www.facebook.com/profile.php?id=100085057493772" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-facebook"></i>
+             <a href="https://wa.me/254742882232?text=Hello%20Opiyo!" target="_blank" rel="noopener noreferrer">
+           <i class="bx bxl-whatsapp"></i>
+          </a>
           <a href="https://github.com/Tech-Savvy-code" target="_blank" rel="noopener noreferrer">
             <i class="bx bxl-github"></i>
           </a>
@@ -316,6 +359,7 @@ I design and build
           @ Opiyo Nickson | All rights reserved 
         </p>
     </footer>
+    <script src="script.js"></script>
 
     <script>
       const form = document.getElementById('contact-form');
@@ -371,8 +415,6 @@ I design and build
     menuIcon.classList.toggle("bx-x"); // changes menu to 'X' when opened
   });
 </script>
-
-
 
     <!-- Hidden Netlify Form -->
   <form name="contact" netlify netlify-honeypot="bot-field" hidden>
