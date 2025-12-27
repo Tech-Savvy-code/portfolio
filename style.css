@@ -183,6 +183,14 @@ section {
 }
 
 /* ===== SOCIAL ICONS ===== */
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap; /* Keep all icons in one horizontal row */
+  position: relative; /* Needed for tooltip positioning */
+}
+
 .social-icons a {
   display: inline-flex;
   justify-content: center;
@@ -195,6 +203,7 @@ section {
   color: var(--main-color);
   margin: 3rem 0.5rem;
   transition: 0.3s ease;
+  position: relative; /* For tooltip positioning */
 }
 
 .social-icons a:hover {
@@ -203,6 +212,35 @@ section {
   transform: scale(1.2) translateY(-5px);
   box-shadow: 0 0 25px var(--main-color);
 }
+
+/* Hidden icons container */
+.more-icons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap; /* Keep icons in one row */
+  transition: all 0.3s ease;
+}
+
+/* Tooltip styling */
+.social-icons a::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%) translateY(0.5rem);
+  color: #FFD700; /* Example: Gold/Yellow color */
+  font-size: 1.4rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 
 
 /* ===== BUTTONS ===== */
