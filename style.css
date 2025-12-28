@@ -819,3 +819,47 @@ section {
     margin-bottom: 2rem;
   }
 }
+/* ===== JUMP UP / DOWN BUTTON ===== */
+.jump-btn {
+  position: fixed;
+  right: 2.5rem;
+  bottom: 2.5rem;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: var(--main-color);
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+  font-size: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px var(--main-color);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.jump-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 30px var(--main-color);
+}
+
+/* Tooltip */
+.jump-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.3rem;
+  color: #FFD700;
+  white-space: nowrap;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.jump-btn:hover::after {
+  opacity: 1;
+}
+

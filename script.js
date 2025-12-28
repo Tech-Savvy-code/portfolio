@@ -80,3 +80,61 @@ if (form) {
     });
   });
 }
+/* ===== JUMP UP / DOWN BUTTON (FULL FIX) ===== */
+document.addEventListener('DOMContentLoaded', () => {
+
+  const jumpBtn = document.getElementById('jump-btn');
+  if (!jumpBtn) return; // safety check
+
+  function getScrollableHeight() {
+    return Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight
+    ) - window.innerHeight;
+  }
+
+  function updateJumpButton() {
+    const scrollTop = window.scrollY;
+    const scrollableHeight = getScrollableHeight();
+
+    // If page is not scrollable, keep "Jump Down"
+    if (scrollableHeight <= 50) {
+      jumpBtn.innerHTML = '<i class="bx bx-down-arrow-alt"></i>';
+      jumpBtn.setAttribute('data-tooltip', 'Jump Down');
+      return;
+    }
+
+    if (scrollTop < scrollableHeight / 2) {
+      // At top → show Jump Down
+      jumpBtn.innerHTML = '<i class="bx bx-down-arrow-alt"></i>';
+      jumpBtn.setAttribute('data-tooltip', 'Jump Down');
+    } else {
+      // Scrolled → show Jump Up
+      jumpBtn.innerHTML = '<i class="bx bx-up-arrow-alt"></i>';
+      jumpBtn.setAttribute('data-tooltip', 'Jump Up');
+    }
+  }
+
+  jumpBtn.addEventListener('click', () => {
+    const scrollTop = window.scrollY;
+    const scrollableHeight = getScrollableHeight();
+
+    if (scrollTop < scrollableHeight / 2) {
+      // Jump DOWN
+      window.scrollTo({
+        top: scrollableHeight,
+        behavior: 'smooth'
+      });
+    } else {
+      // Jump UP
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  });
+
+  // Run on load & scroll
+  updateJumpButton();
+  window.addEventListener('scroll', updateJumpButton);
+});
