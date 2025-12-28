@@ -908,20 +908,23 @@ section {
     floatUp 1.8s infinite ease-in-out,
     pulseGlow 2.5s infinite ease-in-out;
 }
-/* ===== Splash Screen ===== */
+/* Splash Screen Full */
 #splash-screen {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--bg-color);
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: linear-gradient(270deg, #330033, #1a0033, #004466, #003300);
+  background-size: 800% 800%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 9999;
   overflow: hidden;
-  transition: opacity 1s ease, visibility 1s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+  text-align: center;
 }
 
 #splash-screen.hide {
@@ -929,50 +932,76 @@ section {
   visibility: hidden;
 }
 
-.splash-content {
+/* Particles canvas */
+#splash-particles {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* Typewriter text */
+#splash-text {
+  font-size: 3rem; /* base font size increased */
+  font-weight: 400;
+  color: #FFD700;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+  z-index: 3;
+  position: relative;
+  padding: 0 1rem;
+  max-width: 80%;
   text-align: center;
-  animation: splashFadeIn 1.5s ease forwards;
 }
 
-.splash-logo {
-  width: 150px;
-  height: auto;
-  margin-bottom: 2rem;
-  animation: logoBounce 2s ease infinite alternate;
+#splash-text span {
+  display: inline-block;
+  opacity: 0;
+  font-weight: 400;
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+  margin-right: 0.1em; /* space between letters */
 }
 
-.splash-text {
-  font-size: 3rem;
-  color: var(--main-color);
-  font-weight: 700;
-  min-height: 4rem;
+#splash-text span.visible {
+  opacity: 21;
+  font-weight: 900;
+  transform: scale(1.6);
+  text-shadow: 0 0 25px #FFD700;
 }
 
-.splash-text span {
-  color: #FFD700; /* Accent color for typewriter */
-}
-
-/* Skip text */
-.splash-skip {
+/* Skip button styling remains the same */
+#splash-skip {
   margin-top: 2rem;
-  font-size: 1.4rem;
-  color: #aaa;
   cursor: pointer;
-  opacity: 0.7;
-  transition: opacity 0.3s;
+  padding: 0.7rem 1.5rem;
+  border-radius: 2rem;
+  border: 2px solid #FFD700;
+  color: #FFD700;
+  background: transparent;
+  font-weight: bold;
+  font-size: 1.4rem; /* slightly bigger */
+  transition: all 0.3s ease;
+  z-index: 3;
 }
 
-.splash-skip:hover {
-  opacity: 1;
+#splash-skip:hover {
+  background: #FFD700;
+  color: #330033; 
+  transform: scale(1.15);
+  box-shadow: 0 0 20px #FFD700;
 }
 
-/* Animations */
-@keyframes logoBounce {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-20px); }
+
+/* Gradient background animation */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+#splash-screen {
+  animation: gradientMove 15s ease infinite;
 }
 
-@keyframes splashFadeIn {
-  0% { opacity: 0; transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
-}

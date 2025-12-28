@@ -143,7 +143,7 @@ window.addEventListener('load', () => {
 
   const messages = [
     'Welcome to',
-    'to my Portfolio',
+    'The Dev Zone',
     'Explore My Work & Skills'
   ];
 
@@ -153,17 +153,28 @@ window.addEventListener('load', () => {
   function typeLine() {
     if (lineIndex < messages.length) {
       if (charIndex < messages[lineIndex].length) {
-        splashText.innerHTML += `<span>${messages[lineIndex][charIndex]}</span>`;
+        const char = messages[lineIndex][charIndex];
+        const span = document.createElement('span');
+
+        // If character is a space, use non-breaking space
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        splashText.appendChild(span);
+
+        // Animate fade-in + growth
+        setTimeout(() => {
+          span.classList.add('visible');
+        }, 50);
+
         charIndex++;
-        setTimeout(typeLine, 100); // typing speed
+        setTimeout(typeLine, 150); // typing speed
       } else {
         charIndex = 0;
         lineIndex++;
-        splashText.innerHTML += '<br>'; // line break
+        splashText.appendChild(document.createElement('br')); // new line
         setTimeout(typeLine, 500); // delay between lines
       }
     } else {
-      // All lines typed, hide splash after 1.5s
+      // All lines typed, fade out splash after 1.5s
       setTimeout(() => {
         splash.classList.add('hide');
       }, 1500);
@@ -178,3 +189,62 @@ window.addEventListener('load', () => {
   });
 });
 
+
+/* ===== Splash Background Particles ===== */
+const canvas = document.getElementById('splash-particles');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// Symbols to represent coding/developer
+const symbols = ['{','}','(',')',';','<>','</>','=','+','*','const','let','var','//','[]','=>'];
+
+const particles = [];
+const particleCount = 100;
+
+// Initialize particles
+for (let i = 0; i < particleCount; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    speedX: (Math.random() - 0.5) * 1.5,
+    speedY: (Math.random() - 0.5) * 1.5,
+    size: Math.random() * 14 + 8,
+    alpha: Math.random() * 0.8 + 0.2,
+    symbol: symbols[Math.floor(Math.random() * symbols.length)]
+  });
+}
+
+// Draw and animate particles
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach(p => {
+    ctx.font = `${p.size}px monospace`;
+    ctx.fillStyle = `rgba(0, 255, 81, ${p.alpha})`; // coding glow
+    ctx.shadowColor = '#00ff51';
+    ctx.shadowBlur = 8;
+    ctx.fillText(p.symbol, p.x, p.y);
+
+    // Move particle
+    p.x += p.speedX;
+    p.y += p.speedY;
+
+    // Wrap around edges
+    if (p.x > canvas.width) p.x = 0;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.y > canvas.height) p.y = 0;
+    if (p.y < 0) p.y = canvas.height;
+  });
+
+  requestAnimationFrame(drawParticles);
+}
+
+drawParticles();
+
+// Handle responsive resizing
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+ 
