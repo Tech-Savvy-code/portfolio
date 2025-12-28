@@ -135,14 +135,46 @@ function updateJumpButton() {
   updateJumpButton();
   window.addEventListener('scroll', updateJumpButton);
 });
-/* ===== Splash Screen ===== */
+/* ===== Splash Screen with Typewriter & Multiple Lines ===== */
 window.addEventListener('load', () => {
   const splash = document.getElementById('splash-screen');
+  const splashText = document.getElementById('splash-text');
+  const splashSkip = document.getElementById('splash-skip');
 
-  // Duration the splash is visible (in milliseconds)
-  const splashDuration = 3500; // 2.5 seconds
+  const messages = [
+    'Welcome to',
+    'to my Portfolio',
+    'Explore My Work & Skills'
+  ];
 
-  setTimeout(() => {
+  let lineIndex = 0;
+  let charIndex = 0;
+
+  function typeLine() {
+    if (lineIndex < messages.length) {
+      if (charIndex < messages[lineIndex].length) {
+        splashText.innerHTML += `<span>${messages[lineIndex][charIndex]}</span>`;
+        charIndex++;
+        setTimeout(typeLine, 100); // typing speed
+      } else {
+        charIndex = 0;
+        lineIndex++;
+        splashText.innerHTML += '<br>'; // line break
+        setTimeout(typeLine, 500); // delay between lines
+      }
+    } else {
+      // All lines typed, hide splash after 1.5s
+      setTimeout(() => {
+        splash.classList.add('hide');
+      }, 1500);
+    }
+  }
+
+  typeLine();
+
+  // Skip on click
+  splashSkip.addEventListener('click', () => {
     splash.classList.add('hide');
-  }, splashDuration);
+  });
 });
+
