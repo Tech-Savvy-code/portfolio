@@ -943,34 +943,53 @@ section {
   z-index:1;
 }
 
-/* Typewriter text */
+/* ===== Typewriter Text Styling ===== */
 #splash-text {
-  font-size: 3rem; /* base font size increased */
+  font-size: 3rem;           /* Increased size */
   font-weight: 400;
   color: #FFD700;
-  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
   z-index: 3;
   position: relative;
   padding: 0 1rem;
-  max-width: 80%;
+  max-width: 90%;
   text-align: center;
+  letter-spacing: 0.15em;    /* Space between letters */
+  line-height: 1.6;          /* Space between lines */
 }
 
 #splash-text span {
   display: inline-block;
   opacity: 0;
-  font-weight: 400;
-  transform: scale(0.9);
+  transform: scale(0.8);
   transition: all 0.3s ease;
-  margin-right: 0.1em; /* space between letters */
 }
 
 #splash-text span.visible {
-  opacity: 21;
-  font-weight: 900;
-  transform: scale(1.6);
-  text-shadow: 0 0 25px #FFD700;
+  opacity: 1;
+  transform: scale(1.2);     /* Grow slightly when appearing */
+  font-weight: 700;
 }
+
+/* Skip button styling */
+#splash-skip {
+  margin-top: 2rem;
+  cursor: pointer;
+  padding: 0.7rem 1.5rem;
+  border-radius: 2rem;
+  border: 2px solid #FFD700;
+  color: #FFD700;
+  background: transparent;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+#splash-skip:hover {
+  background: #FFD700;
+  color: #330033;
+}
+
 
 /* Skip button styling remains the same */
 #splash-skip {

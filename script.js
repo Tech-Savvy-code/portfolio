@@ -136,6 +136,7 @@ function updateJumpButton() {
   window.addEventListener('scroll', updateJumpButton);
 });
 /* ===== Splash Screen with Typewriter & Multiple Lines ===== */
+// ===== Splash Screen Typewriter with Bold Animation =====
 window.addEventListener('load', () => {
   const splash = document.getElementById('splash-screen');
   const splashText = document.getElementById('splash-text');
@@ -143,7 +144,7 @@ window.addEventListener('load', () => {
 
   const messages = [
     'Welcome to',
-    'The Dev Zone',
+    'My Coding World',
     'Explore My Work & Skills'
   ];
 
@@ -153,40 +154,31 @@ window.addEventListener('load', () => {
   function typeLine() {
     if (lineIndex < messages.length) {
       if (charIndex < messages[lineIndex].length) {
-        const char = messages[lineIndex][charIndex];
         const span = document.createElement('span');
-
-        // If character is a space, use non-breaking space
-        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.textContent = messages[lineIndex][charIndex];
         splashText.appendChild(span);
 
-        // Animate fade-in + growth
-        setTimeout(() => {
-          span.classList.add('visible');
-        }, 50);
+        // Animate fade-in and grow
+        setTimeout(() => span.classList.add('visible'), 50);
 
         charIndex++;
-        setTimeout(typeLine, 150); // typing speed
+        setTimeout(typeLine, 50); // Faster typing speed
       } else {
         charIndex = 0;
         lineIndex++;
         splashText.appendChild(document.createElement('br')); // new line
-        setTimeout(typeLine, 500); // delay between lines
+        setTimeout(typeLine, 200); // Shorter delay between lines
       }
     } else {
       // All lines typed, fade out splash after 1.5s
-      setTimeout(() => {
-        splash.classList.add('hide');
-      }, 1500);
+      setTimeout(() => splash.classList.add('hide'), 1500);
     }
   }
 
   typeLine();
 
-  // Skip on click
-  splashSkip.addEventListener('click', () => {
-    splash.classList.add('hide');
-  });
+  // Skip splash screen immediately
+  splashSkip.addEventListener('click', () => splash.classList.add('hide'));
 });
 
 
