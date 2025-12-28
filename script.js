@@ -163,7 +163,7 @@ window.addEventListener('load', () => {
         }, 50);
 
         charIndex++;
-        setTimeout(typeLine, 25); // typing speed per character
+        setTimeout(typeLine, 15); // typing speed per character
       } else {
         charIndex = 0;
         lineIndex++;
