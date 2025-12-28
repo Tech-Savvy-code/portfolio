@@ -92,28 +92,25 @@ document.addEventListener('DOMContentLoaded', () => {
       document.documentElement.scrollHeight
     ) - window.innerHeight;
   }
+function updateJumpButton() {
+  const scrollTop = window.scrollY;
+  const scrollableHeight =
+    document.documentElement.scrollHeight - window.innerHeight;
 
-  function updateJumpButton() {
-    const scrollTop = window.scrollY;
-    const scrollableHeight = getScrollableHeight();
+  jumpBtn.classList.remove('up', 'down');
 
-    // If page is not scrollable, keep "Jump Down"
-    if (scrollableHeight <= 50) {
-      jumpBtn.innerHTML = '<i class="bx bx-down-arrow-alt"></i>';
-      jumpBtn.setAttribute('data-tooltip', 'Jump Down');
-      return;
-    }
-
-    if (scrollTop < scrollableHeight / 2) {
-      // At top → show Jump Down
-      jumpBtn.innerHTML = '<i class="bx bx-down-arrow-alt"></i>';
-      jumpBtn.setAttribute('data-tooltip', 'Jump Down');
-    } else {
-      // Scrolled → show Jump Up
-      jumpBtn.innerHTML = '<i class="bx bx-up-arrow-alt"></i>';
-      jumpBtn.setAttribute('data-tooltip', 'Jump Up');
-    }
+  if (scrollableHeight <= 50 || scrollTop < scrollableHeight / 2) {
+    // Jump DOWN
+    jumpBtn.innerHTML = '<i class="bx bx-down-arrow-alt"></i>';
+    jumpBtn.setAttribute('data-tooltip', 'Jump Down');
+    jumpBtn.classList.add('down');
+  } else {
+    // Jump UP
+    jumpBtn.innerHTML = '<i class="bx bx-up-arrow-alt"></i>';
+    jumpBtn.setAttribute('data-tooltip', 'Jump Up');
+    jumpBtn.classList.add('up');
   }
+}
 
   jumpBtn.addEventListener('click', () => {
     const scrollTop = window.scrollY;

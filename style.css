@@ -862,4 +862,50 @@ section {
 .jump-btn:hover::after {
   opacity: 1;
 }
+/* ===== JUMP BUTTON ATTENTION ANIMATION ===== */
+
+/* Floating animation */
+@keyframes floatDown {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(8px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+/* Soft pulse glow */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 15px var(--main-color);
+  }
+  50% {
+    box-shadow: 0 0 35px var(--main-color);
+  }
+  100% {
+    box-shadow: 0 0 15px var(--main-color);
+  }
+}
+
+/* Default animation */
+.jump-btn {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* When showing DOWN arrow */
+.jump-btn.down {
+  animation:
+    floatDown 1.8s infinite ease-in-out,
+    pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* When showing UP arrow */
+.jump-btn.up {
+  animation:
+    floatUp 1.8s infinite ease-in-out,
+    pulseGlow 2.5s infinite ease-in-out;
+}
 
