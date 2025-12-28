@@ -135,3 +135,14 @@ function updateJumpButton() {
   updateJumpButton();
   window.addEventListener('scroll', updateJumpButton);
 });
+/* ===== Splash Screen ===== */
+window.addEventListener('load', () => {
+  const splash = document.getElementById('splash-screen');
+
+  // Duration the splash is visible (in milliseconds)
+  const splashDuration = 3500; // 2.5 seconds
+
+  setTimeout(() => {
+    splash.classList.add('hide');
+  }, splashDuration);
+});
