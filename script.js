@@ -6,6 +6,13 @@ const navbar = document.querySelector('.navbar');
 menuIcon.onclick = () => {
   menuIcon.classList.toggle('bx-x');   // Switch menu icon to X
   navbar.classList.toggle('active');   // Show / hide navbar
+
+  // when opening/closing menu, also collapse any open dropdowns
+  document.querySelectorAll('.dropdown.active').forEach(d => {
+    d.classList.remove('active');
+    const t = d.querySelector('.dropdown-toggle');
+    if (t) t.setAttribute('aria-expanded', 'false');
+  });
 };
 
 
@@ -243,4 +250,69 @@ window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
- 
+ // ===== Dropdown Toggle =====
+// simple toggle for each dropdown and global close-on-outside
+document.addEventListener('DOMContentLoaded', () => {
+  const dropdowns = document.querySelectorAll('.dropdown');
+  if (dropdowns.length === 0) return;
+
+  dropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+    const links = dropdown.querySelectorAll('.dropdown-menu a');
+
+    if (toggle) {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('dropdown toggle clicked', toggle.textContent.trim());
+        // close others first
+        dropdowns.forEach(d => {
+          if (d !== dropdown) {
+            d.classList.remove('active');
+            const t = d.querySelector('.dropdown-toggle');
+            if (t) t.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        const isActive = dropdown.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', isActive);
+        console.log('dropdown classes:', dropdown.className);
+        // log computed display for debugging
+        const menu = dropdown.querySelector('.dropdown-menu');
+        if (menu) {
+          console.log('computed display:', window.getComputedStyle(menu).display);
+        }
+        console.log('dropdown active state now', isActive);
+      });
+    }
+
+    // closing when a link inside is clicked
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        dropdown.classList.remove('active');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  });
+
+  // close any open dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (![...dropdowns].some(d => d.contains(e.target))) {
+      dropdowns.forEach(d => {
+        d.classList.remove('active');
+        const t = d.querySelector('.dropdown-toggle');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  // Escape key support remains
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdowns.forEach(d => {
+        d.classList.remove('active');
+        const t = d.querySelector('.dropdown-toggle');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+});

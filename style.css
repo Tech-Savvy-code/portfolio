@@ -47,8 +47,139 @@ h1, h2, h3, h4, .heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1000; /* raised above everything */
+  z-index: 1000;
 }
+
+/* ===== NAVBAR ===== */
+.navbar ul {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  list-style: none;
+}
+
+.navbar ul li a {
+  font-size: 1.6rem;
+  color: var(--text-color);
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: var(--main-color);
+}
+
+/* Underline animation */
+.navbar ul li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: var(--main-color);
+  transition: width 0.3s ease;
+}
+
+.navbar ul li a:hover::after {
+  width: 100%;
+}
+
+/* ===== DROPDOWN ===== */
+.dropdown {
+  position: relative;
+}
+
+/* Dropdown toggle (text + icon) */
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* hover-open removed: dropdowns open only via click now */
+/*
+@media (hover: hover) {
+  .dropdown:hover .dropdown-menu {
+    display: flex;
+  }
+  .dropdown:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+  }
+}
+*/
+
+/* Dropdown arrow */
+.dropdown-toggle i {
+  font-size: 1.6rem;
+  transition: transform 0.3s ease;
+}
+
+/* Dropdown menu (hidden by default) */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  min-width: 220px;
+  display: none !important;        /* Hidden by default, override any hover rule */
+  flex-direction: column;
+  padding: 0.8rem 0;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  z-index: 1001;
+}
+
+/* Show dropdown only when active */
+.dropdown.active .dropdown-menu {
+  display: flex !important;
+}
+
+/* Rotate arrow when active */
+.dropdown.active .dropdown-toggle i {
+  transform: rotate(180deg);
+}
+
+/* Dropdown links */
+.dropdown-menu li a {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  color: #ffffff;
+  display: block;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect */
+.dropdown-menu li a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--main-color);
+}
+
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .dropdown-menu {
+    position: static;
+    background: transparent;
+    box-shadow: none;
+    padding-left: 2rem;
+  }
+
+  .dropdown-menu li a {
+    padding: 0.8rem 0;
+  }
+}
+
+
 
 #menu-icon {
   font-size: 3.6rem;
