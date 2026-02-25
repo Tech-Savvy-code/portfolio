@@ -51,9 +51,9 @@
   </a>
 
   <ul class="dropdown-menu" role="menu">
-    <li role="none"><a role="menuitem" href="#certifications">Certifications</a></li>
-    <li role="none"><a role="menuitem" href="#recommendations">Recommendations</a></li>
-    <li role="none"><a role="menuitem" href="#education">Education</a></li>
+    <li role="none"><a role="menuitem" href="#">Certifications</a></li>
+    <li role="none"><a role="menuitem" href="#">Recommendations</a></li>
+    <li role="none"><a role="menuitem" href="#">Education</a></li>
   </ul>
 </li>
 
@@ -428,6 +428,24 @@ I design and build
   <i class="bx bx-down-arrow-alt"></i>
 </button>
 
-  
+  <!-- Item selection modal -->
+  <div id="items-modal" class="items-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title"></h2>
+        <span class="modal-close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <ul id="items-list" class="items-list"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF viewer overlay -->
+  <div id="pdf-viewer" class="pdf-viewer">
+    <div class="close-btn">&times;</div>
+    <iframe id="pdf-frame"></iframe>
+  </div>
+
   </body>
 </html>

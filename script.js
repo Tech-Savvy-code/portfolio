@@ -252,6 +252,29 @@ window.addEventListener('resize', () => {
 });
  // ===== Dropdown Toggle =====
 // simple toggle for each dropdown and global close-on-outside
+// (protected by a PIN because these menus contain confidential credentials)
+
+// change this value to your own secret key
+const credentialsPin = '1234';
+
+function verifyCredentialsPin() {
+  const entry = prompt('Enter security key to view credentials:');
+  if (entry === credentialsPin) {
+    return true;
+  }
+  // wrong pin feedback
+  Swal.fire({
+    toast: true,
+    position: 'top',
+    icon: 'error',
+    title: 'Incorrect key',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true
+  });
+  return false;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const dropdowns = document.querySelectorAll('.dropdown');
   if (dropdowns.length === 0) return;
@@ -263,6 +286,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (toggle) {
       toggle.addEventListener('click', (e) => {
         e.preventDefault();
+        // require pin before opening
+        if (!verifyCredentialsPin()) {
+          return; // abort open
+        }
+
         console.log('dropdown toggle clicked', toggle.textContent.trim());
         // close others first
         dropdowns.forEach(d => {
@@ -316,3 +344,149 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// ---------- CREDENTIALS DATA & MODAL HANDLER ----------
+// Define items for each category
+const credentialsData = {
+  certifications: [
+      // Add more certifications here:
+    { name: 'Python Certification', path: 'assets/Python -Certification.pdf' },
+     { name: 'Patent Certification', path: 'assets/PCT101E25-1-certification.pdf' },
+     { name: 'Datastructures Certification', path: 'assets/Datastructures certification.pdf' },
+    // { name: 'Cloud Computing', path: 'assets/cloud.pdf' },
+  ],
+  recommendations: [
+    // Add recommendations here:
+    //{ name: 'Manager Recommendation', path: 'assets/mgr-rec.pdf' },
+    // { name: 'Client Feedback', path: 'assets/client.pdf' },
+  ],
+  education: [
+    // Add education certificates here:
+    //{ name: 'Bachelor Degree', path: 'assets/bachelor.pdf' },
+    { name: 'KCPE Certificate', path: 'assets/Primary Certificate.pdf' },
+    { name: 'KCSE Certificate', path: 'assets/KCSE Certificate.pdf' },
+    { name: 'Sec. Leaving Certificate', path: 'assets/Sec. Leaving Certificate.pdf' },
+
+  ]
+};
+
+(function() {
+  let modal = null;
+  let modalTitle = null;
+  let itemsList = null;
+  let modalClose = null;
+  let pdfViewer = null;
+  let pdfFrame = null;
+  let pdfCloseBtn = null;
+
+  function ensureElements() {
+    if (!modal) modal = document.getElementById('items-modal');
+    if (!modalTitle) modalTitle = document.getElementById('modal-title');
+    if (!itemsList) itemsList = document.getElementById('items-list');
+    if (!modalClose) modalClose = document.querySelector('.modal-close');
+    if (!pdfViewer) pdfViewer = document.getElementById('pdf-viewer');
+    if (!pdfFrame) pdfFrame = document.getElementById('pdf-frame');
+    if (!pdfCloseBtn) pdfCloseBtn = document.querySelector('.pdf-viewer .close-btn');
+    console.log('Elements check - Modal:', modal ? '✓' : '✗', 'List:', itemsList ? '✓' : '✗');
+  }
+
+  function closeModal() {
+    ensureElements();
+    if (modal) modal.classList.remove('active');
+  }
+
+  function closePdf() {
+    ensureElements();
+    if (pdfViewer) pdfViewer.style.display = 'none';
+    if (pdfFrame) pdfFrame.src = '';
+  }
+
+  function showModal(category) {
+    ensureElements();
+    const items = credentialsData[category] || [];
+    console.log(`Opening modal for: ${category}`, items);
+
+    if (!modal) {
+      console.error('Modal still not found after lookup!');
+      return;
+    }
+
+    const titleText = category.charAt(0).toUpperCase() + category.slice(1);
+    if (modalTitle) modalTitle.textContent = titleText;
+
+    if (itemsList) itemsList.innerHTML = '';
+
+    if (itemsList) {
+      items.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="${item.path}">${item.name}</a>`;
+        li.addEventListener('click', (e) => {
+          e.preventDefault();
+          closePdf();
+          closeModal();
+          if (pdfFrame) pdfFrame.src = item.path;
+          if (pdfViewer) pdfViewer.style.display = 'flex';
+        });
+        itemsList.appendChild(li);
+      });
+    }
+
+    if (modal) {
+      modal.classList.add('active');
+      console.log('Modal displayed successfully');
+    }
+  }
+
+  // Delegated handlers to avoid timing issues
+  document.addEventListener('click', (evt) => {
+    if (evt.target.classList && evt.target.classList.contains('modal-close')) {
+      closeModal();
+      return;
+    }
+
+    const modalElem = document.getElementById('items-modal');
+    if (modalElem && evt.target === modalElem) {
+      closeModal();
+      return;
+    }
+
+    const pdfElem = document.getElementById('pdf-viewer');
+    if (pdfElem && evt.target === pdfElem) {
+      closePdf();
+      return;
+    }
+
+    if (evt.target.classList && evt.target.classList.contains('close-btn')) {
+      closePdf();
+      return;
+    }
+
+    const link = evt.target.closest('.dropdown-menu a');
+    if (!link) return;
+
+    // require PIN again just before revealing the modal, in case someone bypassed
+    if (!verifyCredentialsPin()) {
+      // close dropdown if it was open
+      const activeDropdown = link.closest('.dropdown');
+      if (activeDropdown) {
+        activeDropdown.classList.remove('active');
+        const t = activeDropdown.querySelector('.dropdown-toggle');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      }
+      return;
+    }
+
+    const text = link.textContent.toLowerCase();
+
+    if (text.includes('certification')) {
+      evt.preventDefault();
+      showModal('certifications');
+    } else if (text.includes('recommendation')) {
+      evt.preventDefault();
+      showModal('recommendations');
+    } else if (text.includes('education')) {
+      evt.preventDefault();
+      showModal('education');
+    }
+  });
+})();
