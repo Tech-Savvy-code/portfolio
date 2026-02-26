@@ -357,7 +357,7 @@ const credentialsData = {
   ],
   recommendations: [
     // Add recommendations here:
-    //{ name: 'Manager Recommendation', path: 'assets/mgr-rec.pdf' },
+    { name: 'Kipi Recommendation Letter', path: 'assets/Kipi Recommendation Letter.pdf' },
     // { name: 'Client Feedback', path: 'assets/client.pdf' },
   ],
   education: [
