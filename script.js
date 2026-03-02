@@ -353,11 +353,11 @@ const credentialsData = {
     { name: 'Python Certification', path: 'assets/Python -Certification.pdf' },
      { name: 'Patent Certification', path: 'assets/PCT101E25-1-certification.pdf' },
      { name: 'Datastructures Certification', path: 'assets/Datastructures certification.pdf' },
-    // { name: 'Cloud Computing', path: 'assets/cloud.pdf' },
+    { name: 'KAFU Innovation  Certification', path: 'assets/KAFU Innovation  Cert.pdf' },
   ],
   recommendations: [
     // Add recommendations here:
-    //{ name: 'Manager Recommendation', path: 'assets/mgr-rec.pdf' },
+    { name: 'Kipi Recommendation Letter', path: 'assets/Kipi Recommendation Letter.pdf' },
     // { name: 'Client Feedback', path: 'assets/client.pdf' },
   ],
   education: [
