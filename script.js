@@ -255,7 +255,7 @@ window.addEventListener('resize', () => {
 // (protected by a PIN because these menus contain confidential credentials)
 
 // change this value to your own secret key
-const credentialsPin = '1234';
+const credentialsPin = '12345';
 
 function verifyCredentialsPin() {
   const entry = prompt('Enter security key to view credentials:');
