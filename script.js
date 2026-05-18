@@ -427,6 +427,27 @@ function showPinError() {
   });
 }
 
+function setupFaqAccordion() {
+  const faqButtons = document.querySelectorAll('.faq-question');
+  faqButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const isOpen = answer.classList.contains('open');
+
+      document.querySelectorAll('.faq-answer.open').forEach(openAnswer => {
+        openAnswer.classList.remove('open');
+        openAnswer.closest('.faq-item')?.classList.remove('active');
+      });
+
+      if (!isOpen) {
+        answer.classList.add('open');
+        item.classList.add('active');
+      }
+    });
+  });
+}
+
 function clearPinInput() {
   if (pinInput) pinInput.value = '';
 }
@@ -517,6 +538,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+
+  setupFaqAccordion();
 });
 
 // ---------- CREDENTIALS DATA & MODAL HANDLER ----------

@@ -1004,6 +1004,237 @@ section {
   margin-top: 40px;
   font-size: 16px;
 }
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2rem;
+  padding: 2rem;
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer-logo {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.footer-logo span {
+  color: var(--main-color);
+}
+
+.footer-card h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--main-color);
+}
+
+.footer-card p {
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.footer-social {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-social a {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: white;
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.footer-social a:hover {
+  transform: translateY(-3px);
+  border-color: var(--main-color);
+  background: rgba(0, 255, 81, 0.12);
+}
+
+.footer-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.footer-nav li a {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.6rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-nav li a:hover {
+  color: white;
+  transform: translateX(4px);
+}
+
+.footer-contact .btn {
+  margin-top: 1.5rem;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+}
+
+.footer .copyright {
+  margin: 0;
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== FAQS ===== */
+.faq {
+  padding: 6rem 10%;
+  background: linear-gradient(180deg, rgba(8, 8, 8, 0.95) 0%, rgba(16, 20, 30, 0.95) 100%);
+  scroll-margin-top: 9rem;
+}
+
+.faq .heading {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.faq .section-subtitle {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.faq-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(300px, 1fr));
+}
+
+.faq-item {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 2rem;
+  border: 1px solid rgba(0, 255, 81, 0.12);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.8rem 2rem;
+  font-size: 1.8rem;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.18);
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.faq-question:hover {
+  background: rgba(0, 255, 81, 0.08);
+}
+
+.faq-question i {
+  font-size: 2rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 2rem;
+}
+
+.faq-answer.open {
+  padding: 1rem 2rem 2rem;
+  max-height: 320px;
+}
+
+.faq-answer p {
+  margin: 0;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+  color: var(--main-color);
+}
+
+.faq-note {
+  margin-top: 3rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.4rem;
+}
+
+@media (max-width: 900px) {
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .faq {
+    padding: 4.5rem 5%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .footer {
+    padding: 4rem 5%;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-card {
+    padding: 1.8rem;
+  }
+
+  .footer-social {
+    justify-content: flex-start;
+  }
+}
 /* ===== PROJECTS ===== */
 .projects {
   background-color: var(--bg-color);
