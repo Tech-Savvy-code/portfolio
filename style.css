@@ -218,6 +218,7 @@ h1, h2, h3, h4, .heading {
 }
 
 /* ===== ITEMS MODAL (DIALOG) ===== */
+.pin-modal,
 .items-modal {
   position: fixed;
   top: 0;
@@ -231,8 +232,80 @@ h1, h2, h3, h4, .heading {
   z-index: 1900;
 }
 
+.pin-modal.active,
 .items-modal.active {
   display: flex;
+}
+
+.pin-modal-content {
+  background: var(--second-bg-color);
+  border-radius: 2rem;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 0 40px rgba(0, 255, 81, 0.3);
+  border: 2px solid var(--main-color);
+}
+
+.pin-modal-header,
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  border-bottom: 2px solid var(--main-color);
+}
+
+.pin-modal-header h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--main-color);
+}
+
+.pin-modal-body {
+  padding: 2rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.pin-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pin-input-wrapper input {
+  width: 100%;
+  padding: 1rem 4rem 1rem 1.5rem;
+  border: 2px solid var(--main-color);
+  border-radius: 1rem;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1.4rem;
+}
+
+.pin-input-wrapper button {
+  position: absolute;
+  right: 0.75rem;
+  border: none;
+  background: transparent;
+  color: var(--main-color);
+  cursor: pointer;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pin-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pin-actions .btn {
+  min-width: 120px;
 }
 
 .modal-content {

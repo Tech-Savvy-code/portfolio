@@ -256,13 +256,83 @@ window.addEventListener('resize', () => {
 
 // change this value to your own secret key
 const credentialsPin = '12345';
+let pinModal = null;
+let pinInput = null;
+let pinToggleBtn = null;
+let pinSubmitBtn = null;
+let pinCancelBtn = null;
+let pinCloseBtn = null;
+let pendingPinResolve = null;
 
-function verifyCredentialsPin() {
-  const entry = prompt('Enter security key to view credentials:');
-  if (entry === credentialsPin) {
+function ensurePinElements() {
+  if (!pinModal) pinModal = document.getElementById('pin-modal');
+  if (!pinInput) pinInput = document.getElementById('pin-input');
+  if (!pinToggleBtn) pinToggleBtn = document.getElementById('pin-toggle');
+  if (!pinSubmitBtn) pinSubmitBtn = document.getElementById('pin-submit');
+  if (!pinCancelBtn) pinCancelBtn = document.getElementById('pin-cancel');
+  if (!pinCloseBtn) pinCloseBtn = document.getElementById('pin-close');
+}
+
+function closePinModal() {
+  ensurePinElements();
+  if (pinModal) {
+    pinModal.classList.remove('active');
+    pinModal.setAttribute('aria-hidden', 'true');
+  }
+  if (pendingPinResolve) {
+    pendingPinResolve(false);
+    pendingPinResolve = null;
+  }
+}
+
+function resolvePinModal(isValid) {
+  if (pendingPinResolve) {
+    pendingPinResolve(isValid);
+    pendingPinResolve = null;
+  }
+  if (pinModal) {
+    pinModal.classList.remove('active');
+    pinModal.setAttribute('aria-hidden', 'true');
+  }
+}
+
+function openPinModal() {
+  ensurePinElements();
+  if (!pinModal || !pinInput) {
+    return Promise.resolve(false);
+  }
+  pinInput.value = '';
+  pinInput.type = 'password';
+  if (pinToggleBtn) {
+    pinToggleBtn.setAttribute('aria-label', 'Show PIN');
+    const icon = pinToggleBtn.querySelector('i');
+    if (icon) icon.className = 'bx bx-hide';
+  }
+  pinModal.classList.add('active');
+  pinModal.setAttribute('aria-hidden', 'false');
+  pinInput.focus();
+  return new Promise(resolve => {
+    pendingPinResolve = resolve;
+  });
+}
+
+function togglePinVisibility() {
+  if (!pinInput || !pinToggleBtn) return;
+  const showPin = pinInput.type === 'password';
+  pinInput.type = showPin ? 'text' : 'password';
+  const icon = pinToggleBtn.querySelector('i');
+  if (icon) icon.className = showPin ? 'bx bx-show' : 'bx bx-hide';
+  pinToggleBtn.setAttribute('aria-label', showPin ? 'Hide PIN' : 'Show PIN');
+}
+
+async function verifyCredentialsPin() {
+  const allowed = await openPinModal();
+  if (allowed && pinInput && pinInput.value === credentialsPin) {
     return true;
   }
-  // wrong pin feedback
+  if (!allowed) {
+    return false;
+  }
   Swal.fire({
     toast: true,
     position: 'top',
@@ -275,7 +345,111 @@ function verifyCredentialsPin() {
   return false;
 }
 
+function setupPinModalHandlers() {
+  ensurePinElements();
+  if (!pinModal) return;
+
+  pinSubmitBtn?.addEventListener('click', (event) => {
+    event.preventDefault();
+    const valid = pinInput?.value === credentialsPin;
+    resolvePinModal(valid);
+  });
+
+  pinCancelBtn?.addEventListener('click', (event) => {
+    event.preventDefault();
+    closePinModal();
+  });
+
+  pinCloseBtn?.addEventListener('click', () => {
+    closePinModal();
+  });
+
+  pinToggleBtn?.addEventListener('click', (event) => {
+    event.preventDefault();
+    togglePinVisibility();
+  });
+
+  pinInput?.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      const valid = pinInput.value === credentialsPin;
+      resolvePinModal(valid);
+    }
+  });
+
+  document.addEventListener('click', (evt) => {
+    if (evt.target === pinModal) {
+      closePinModal();
+    }
+  });
+}
+
+function showInvalidPinMessage() {
+  Swal.fire({
+    toast: true,
+    position: 'top',
+    icon: 'error',
+    title: 'Incorrect key',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true
+  });
+}
+
+function openPinAndVerify() {
+  return new Promise(async resolve => {
+    const allowed = await openPinModal();
+    if (!allowed) {
+      resolve(false);
+      return;
+    }
+    resolve(pinInput?.value === credentialsPin);
+  });
+}
+
+function validatePinInput() {
+  return pinInput?.value === credentialsPin;
+}
+
+function verifyCredentialsPinSync() {
+  return pinInput?.value === credentialsPin;
+}
+
+function showPinError() {
+  Swal.fire({
+    toast: true,
+    position: 'top',
+    icon: 'error',
+    title: 'Incorrect key',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true
+  });
+}
+
+function clearPinInput() {
+  if (pinInput) pinInput.value = '';
+}
+
+function openPinDialog() {
+  return openPinModal();
+}
+
+function pinDialogResult() {
+  return pinInput?.value === credentialsPin;
+}
+
+function maybeClosePinModal() {
+  closePinModal();
+}
+
+function resolvePinValidation() {
+  if (!pinInput) return false;
+  return pinInput.value === credentialsPin;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  setupPinModalHandlers();
   const dropdowns = document.querySelectorAll('.dropdown');
   if (dropdowns.length === 0) return;
 
@@ -284,10 +458,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const links = dropdown.querySelectorAll('.dropdown-menu a');
 
     if (toggle) {
-      toggle.addEventListener('click', (e) => {
+      toggle.addEventListener('click', async (e) => {
         e.preventDefault();
         // require pin before opening
-        if (!verifyCredentialsPin()) {
+        if (!(await verifyCredentialsPin())) {
           return; // abort open
         }
 
@@ -438,7 +612,7 @@ const credentialsData = {
   }
 
   // Delegated handlers to avoid timing issues
-  document.addEventListener('click', (evt) => {
+  document.addEventListener('click', async (evt) => {
     if (evt.target.classList && evt.target.classList.contains('modal-close')) {
       closeModal();
       return;
@@ -465,7 +639,7 @@ const credentialsData = {
     if (!link) return;
 
     // require PIN again just before revealing the modal, in case someone bypassed
-    if (!verifyCredentialsPin()) {
+    if (!(await verifyCredentialsPin())) {
       // close dropdown if it was open
       const activeDropdown = link.closest('.dropdown');
       if (activeDropdown) {

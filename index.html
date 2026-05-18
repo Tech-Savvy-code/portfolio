@@ -429,6 +429,29 @@ I design and build
   <i class="bx bx-down-arrow-alt"></i>
 </button>
 
+  <!-- PIN entry modal -->
+  <div id="pin-modal" class="pin-modal" aria-hidden="true">
+    <div class="pin-modal-content" role="dialog" aria-modal="true" aria-labelledby="pin-modal-title">
+      <div class="pin-modal-header">
+        <h2 id="pin-modal-title">Enter security key</h2>
+        <span class="modal-close" id="pin-close">&times;</span>
+      </div>
+      <div class="pin-modal-body">
+        <label for="pin-input">PIN</label>
+        <div class="pin-input-wrapper">
+          <input id="pin-input" type="password" autocomplete="current-password" placeholder="Enter PIN" />
+          <button id="pin-toggle" type="button" aria-label="Show PIN">
+            <i class="bx bx-hide"></i>
+          </button>
+        </div>
+        <div class="pin-actions">
+          <button id="pin-submit" class="btn primary-btn">Submit</button>
+          <button id="pin-cancel" class="btn secondary-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Item selection modal -->
   <div id="items-modal" class="items-modal">
     <div class="modal-content">
