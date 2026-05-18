@@ -381,33 +381,74 @@ I design and build
 </section>
 
     <section class="contact" id="contact">
-      <h2>Contact <span>Me</span></h2>
-
-     <form name="contact" method="POST" data-netlify="true" id="contact-form">
-  <input type="hidden" name="form-name" value="contact">
-
-  <div class="input-group">
-    <div class="input-box">
-      <input type="text" name="full_name" placeholder="Full Name" required>
-      <input type="email" name="email" placeholder="Email" required>
-    </div>
-    <div class="input-box">
-      <input type="tel" name="phone" placeholder="Phone number" required>
-      <input type="text" name="subject" placeholder="Subject" required>
-    </div>
-  </div>
-
-  <div class="input-group-2">
-    <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
-    <input type="submit" value="Send Message" class="btn">
-  </div>
-</form>
-
-      <div id="form-success" style="display: none; color: green; margin-top: 20px;">
-        ✅ Message sent successfully!
+      <div class="contact-header">
+        <h2>Get In <span>Touch</span></h2>
+        <p class="contact-subtitle">Have a project in mind? Let's discuss your idea and bring it to life together.</p>
       </div>
 
+      <div class="contact-container">
+        <div class="contact-info">
+          <div class="info-card">
+            <i class="bx bxs-envelope"></i>
+            <h4>Email</h4>
+            <p>Send me a direct message</p>
+            <a href="mailto:opiyonick243@gmail.com">opiyonick243@gmail.com</a>
+          </div>
+
+          <div class="info-card">
+            <i class="bx bxl-whatsapp"></i>
+            <h4>WhatsApp</h4>
+            <p>Quick chat on WhatsApp</p>
+            <a href="https://wa.me/254742882232" target="_blank">+254 742 882 232</a>
+          </div>
+
+          <div class="info-card">
+            <i class="bx bxs-phone"></i>
+            <h4>Phone</h4>
+            <p>Call me anytime</p>
+            <a href="tel:+254742882232">+254 742 882 232</a>
+          </div>
+        </div>
+
+        <form name="contact" method="POST" data-netlify="true" id="contact-form" class="contact-form">
+          <input type="hidden" name="form-name" value="contact">
+
+          <div class="form-group">
+            <div class="form-field">
+              <label for="full_name">Full Name *</label>
+              <input type="text" id="full_name" name="full_name" placeholder="Your full name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-field">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+254 7XX XXX XXX">
+            </div>
+            <div class="form-field">
+              <label for="subject">Subject *</label>
+              <input type="text" id="subject" name="subject" placeholder="Project type or inquiry" required>
+            </div>
+          </div>
+
+          <div class="form-field full-width">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project, timeline, and requirements..." rows="7" required></textarea>
+          </div>
+
+          <button type="submit" class="btn primary-btn submit-btn">Send Message</button>
+        </form>
+      </div>
+
+      <div id="form-success" style="display: none; color: #00ff51; margin-top: 20px; text-align: center;">
+        ✅ Message sent successfully!
+      </div>
     </section>
+
 
 <footer class="footer">
   <div class="footer-container">
