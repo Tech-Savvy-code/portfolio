@@ -54,6 +54,7 @@
     <li role="none"><a role="menuitem" href="#">Certifications</a></li>
     <li role="none"><a role="menuitem" href="#">Recommendations</a></li>
     <li role="none"><a role="menuitem" href="#">Education</a></li>
+    <li role="none"><a role="menuitem" href="#">Clearance</a></li>
   </ul>
 </li>
 
@@ -317,7 +318,13 @@ I design and build
   <section class="projects" id="projects">
   <h2 class="heading">Projects</h2>
 
-  <div class="projects-container">
+  <div class="projects-slider" aria-label="Featured projects slideshow">
+    <button class="project-slider-btn project-slider-prev" type="button" aria-label="Previous project">
+      <i class="bx bx-chevron-left"></i>
+    </button>
+
+    <div class="projects-viewport">
+      <div class="projects-container">
 
     <!-- Tusome Project -->
     <div class="project-card">
@@ -358,25 +365,71 @@ I design and build
       </div>
     </div>
 
-    <!-- Real Estate Project -->
+    <!-- TechAssist Hub Mobile Project -->
     <div class="project-card">
-      <div class="project-icon real-icon">
-        <i class="bx bxs-home"></i>
+      <div class="project-icon support-icon">
+        <i class="bx bx-support"></i>
       </div>
       <div class="project-info">
-        <h3>Real Estate Android App</h3>
+        <h3>TechAssist Hub Mobile App</h3>
         <p>
-          An Android real estate application that allows users to browse properties,
-          view detailed listings, and contact agents directly.
-          The app focuses on usability, modern UI design, and efficient property discovery.
+          A mobile tech support app where staff create support requests and admins
+          assign them to technicians from the relevant departments.
+          The app helps teams track requests, route issues, and respond faster.
         </p>
         <div class="project-links">
           <a href="https://github.com/Tech-Savvy-code" target="_blank" class="btn">GitHub</a>
-          <a href="https://github.com/Tech-Savvy-code/RealEstate/releases/download/v1.0.1/realestate.apk" class="btn">Download App</a>
+          <a href="https://github.com/Tech-Savvy-code/TechAssist-Hub--Mobile/releases/download/v1.0.0/TechAssist-Hub.MobileApp.apk" class="btn">Download App</a>
         </div>
       </div>
     </div>
 
+    <!-- KAFU AI Website -->
+    <div class="project-card">
+      <div class="project-icon kafu-icon">
+        <i class="bx bx-brain"></i>
+      </div>
+      <div class="project-info">
+        <h3>KAFU AI Website</h3>
+        <p>
+          KAFU AI is a React website that shares information about Kaimosi
+          Friends University, including offered programs, campus navigation,
+          documents, calendars, and a chatbot for answering student questions.
+        </p>
+        <div class="project-links">
+          <a href="https://github.com/Tech-Savvy-code" target="_blank" class="btn">GitHub</a>
+          <a href="https://kafuai.netlify.app/" class="btn">View Live</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- StudentRedressal App -->
+    <div class="project-card">
+      <div class="project-icon redressal-icon">
+        <i class="bx bx-message-square-check"></i>
+      </div>
+      <div class="project-info">
+        <h3>StudentRedressal App</h3>
+        <p>
+          StudentRedressal is a React Native mobile app where students submit
+          complaints, admins assign them to staff, and the responsible teams
+          resolve issues while giving clear feedback to students.
+        </p>
+        <div class="project-links">
+          <a href="https://github.com/Tech-Savvy-code" target="_blank" class="btn">GitHub</a>
+          <a href="https://github.com/Tech-Savvy-code/StudentRedressal_ReactApp/releases/download/v1.0.1/StudentRedressalApp.apk" class="btn">Download App</a>
+        </div>
+      </div>
+    </div>
+
+      </div>
+    </div>
+
+    <button class="project-slider-btn project-slider-next" type="button" aria-label="Next project">
+      <i class="bx bx-chevron-right"></i>
+    </button>
+
+    <div class="project-slider-dots" aria-label="Project slideshow pages"></div>
   </div>
 </section>
 

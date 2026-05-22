@@ -87,6 +87,121 @@ if (form) {
     });
   });
 }
+
+/* ===== PROJECTS SLIDESHOW ===== */
+document.addEventListener('DOMContentLoaded', () => {
+  const slider = document.querySelector('.projects-slider');
+  if (!slider) return;
+
+  const track = slider.querySelector('.projects-container');
+  const cards = Array.from(slider.querySelectorAll('.project-card'));
+  const prevBtn = slider.querySelector('.project-slider-prev');
+  const nextBtn = slider.querySelector('.project-slider-next');
+  const dotsWrap = slider.querySelector('.project-slider-dots');
+
+  if (!track || cards.length === 0 || !prevBtn || !nextBtn || !dotsWrap) return;
+
+  let currentIndex = 0;
+  let visibleCount = 1;
+  let maxIndex = 0;
+  let autoSlideId = null;
+
+  function getGap() {
+    return parseFloat(window.getComputedStyle(track).gap) || 0;
+  }
+
+  function calculateVisibleCount() {
+    const viewportWidth = slider.querySelector('.projects-viewport')?.clientWidth || track.clientWidth;
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    if (!cardWidth) return 1;
+    return Math.max(1, Math.round((viewportWidth + getGap()) / (cardWidth + getGap())));
+  }
+
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    for (let i = 0; i <= maxIndex; i++) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'project-dot';
+      dot.setAttribute('aria-label', `Show project slide ${i + 1}`);
+      dot.addEventListener('click', () => {
+        goToSlide(i);
+        restartAutoSlide();
+      });
+      dotsWrap.appendChild(dot);
+    }
+  }
+
+  function updateSlider() {
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const offset = currentIndex * (cardWidth + getGap());
+    track.style.transform = `translateX(-${offset}px)`;
+
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex === maxIndex;
+
+    dotsWrap.querySelectorAll('.project-dot').forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentIndex);
+      dot.setAttribute('aria-current', index === currentIndex ? 'true' : 'false');
+    });
+  }
+
+  function refreshSlider() {
+    visibleCount = calculateVisibleCount();
+    maxIndex = Math.max(0, cards.length - visibleCount);
+    currentIndex = Math.min(currentIndex, maxIndex);
+    buildDots();
+    updateSlider();
+  }
+
+  function goToSlide(index) {
+    currentIndex = Math.min(Math.max(index, 0), maxIndex);
+    updateSlider();
+  }
+
+  function showNextSlide() {
+    goToSlide(currentIndex === maxIndex ? 0 : currentIndex + 1);
+  }
+
+  function startAutoSlide() {
+    stopAutoSlide();
+    if (maxIndex > 0) {
+      autoSlideId = window.setInterval(showNextSlide, 5500);
+    }
+  }
+
+  function stopAutoSlide() {
+    if (autoSlideId) {
+      window.clearInterval(autoSlideId);
+      autoSlideId = null;
+    }
+  }
+
+  function restartAutoSlide() {
+    stopAutoSlide();
+    startAutoSlide();
+  }
+
+  prevBtn.addEventListener('click', () => {
+    goToSlide(currentIndex - 1);
+    restartAutoSlide();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    showNextSlide();
+    restartAutoSlide();
+  });
+
+  slider.addEventListener('mouseenter', stopAutoSlide);
+  slider.addEventListener('mouseleave', startAutoSlide);
+  window.addEventListener('resize', () => {
+    refreshSlider();
+    restartAutoSlide();
+  });
+
+  refreshSlider();
+  startAutoSlide();
+});
 /* ===== JUMP UP / DOWN BUTTON (FULL FIX) ===== */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -564,6 +679,9 @@ const credentialsData = {
     { name: 'KCSE Certificate', path: 'assets/KCSE Certificate.pdf' },
     { name: 'Sec. Leaving Certificate', path: 'assets/Sec. Leaving Certificate.pdf' },
 
+  ],
+  clearance: [
+    { name: 'Certificate of Good Conduct', path: 'assets/Certificate of Good Conduct.pdf' },
   ]
 };
 
@@ -684,6 +802,9 @@ const credentialsData = {
     } else if (text.includes('education')) {
       evt.preventDefault();
       showModal('education');
+    } else if (text.includes('clearance')) {
+      evt.preventDefault();
+      showModal('clearance');
     }
   });
 })();
