@@ -810,33 +810,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ---------- CREDENTIALS DATA & MODAL HANDLER ----------
-// Define items for each category
-const credentialsData = {
-  certifications: [
-      // Add more certifications here:
-    { name: 'Python Certification', path: 'assets/Python -Certification.pdf' },
-     { name: 'Patent Certification', path: 'assets/PCT101E25-1-certification.pdf' },
-     { name: 'Datastructures Certification', path: 'assets/Datastructures certification.pdf' },
-    { name: 'KAFU Innovation  Certification', path: 'assets/KAFU Innovation  Cert.pdf' },
-  ],
-  recommendations: [
-    // Add recommendations here:
-    { name: 'Kipi Recommendation Letter', path: 'assets/Kipi Recommendation Letter.pdf' },
-    // { name: 'Client Feedback', path: 'assets/client.pdf' },
-  ],
-  education: [
-    // Add education certificates here:
-    //{ name: 'Bachelor Degree', path: 'assets/bachelor.pdf' },
-    { name: 'KCPE Certificate', path: 'assets/Primary Certificate.pdf' },
-    { name: 'KCSE Certificate', path: 'assets/KCSE Certificate.pdf' },
-    { name: 'Sec. Leaving Certificate', path: 'assets/Sec. Leaving Certificate.pdf' },
-
-  ],
-  clearance: [
-    { name: 'Certificate of Good Conduct', path: 'assets/Certificate of Good Conduct.pdf' },
-  ]
-};
-
 (function() {
   let modal = null;
   let modalTitle = null;
