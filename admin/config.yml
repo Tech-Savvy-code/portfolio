@@ -3,8 +3,6 @@ backend:
   repo: Tech-Savvy-code/portfolio
   branch: main
   auth_type: implicit
-  base_url: https://api.netlify.com
-  auth_endpoint: https://api.netlify.com/auth
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
