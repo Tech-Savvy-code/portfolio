@@ -126,11 +126,14 @@ function renderProjects(items) {
 function renderCredentials(data) {
   if (!data || !Array.isArray(data)) return;
 
+  // Ensure each item exposes a `path` property (legacy JSON uses `file`)
+  const normalize = (items) => items.map(i => ({ ...i, path: i.path || i.file || '' }));
+
   credentialsData = {
-    certifications: data.filter(item => item.type === 'certification'),
-    recommendations: data.filter(item => item.type === 'recommendation'),
-    education: data.filter(item => item.type === 'education'),
-    clearance: data.filter(item => item.type === 'clearance')
+    certifications: normalize(data.filter(item => item.type === 'certification')),
+    recommendations: normalize(data.filter(item => item.type === 'recommendation')),
+    education: normalize(data.filter(item => item.type === 'education')),
+    clearance: normalize(data.filter(item => item.type === 'clearance'))
   };
 }
 
@@ -148,7 +151,8 @@ async function loadCMSContent() {
   if (skillsData?.skills) renderSkills(skillsData.skills);
   if (servicesData?.services) renderServices(servicesData.services);
   if (faqsData?.faqs) renderFaqs(faqsData.faqs);
-  if (projectsData?.projects) renderProjects(projectsData.projects);
+  // Projects use hardcoded HTML instead of CMS JSON
+  // if (projectsData?.projects) renderProjects(projectsData.projects);
   if (credentialsDataJson?.credentials) renderCredentials(credentialsDataJson.credentials);
 }
 
