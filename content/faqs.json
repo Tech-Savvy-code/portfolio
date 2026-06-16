@@ -1,0 +1,20 @@
+{
+  "faqs": [
+    {
+      "question": "What technologies do you use for web projects?",
+      "answer": "I build responsive websites with HTML, CSS, JavaScript, React, and modern frontend patterns. I also connect apps to Firebase, REST APIs, and databases for scalable backend handling."
+    },
+    {
+      "question": "Can you build both Android apps and web systems?",
+      "answer": "Yes. I deliver native Android applications, React Native mobile apps, and web systems that can integrate with shared APIs and cloud services."
+    },
+    {
+      "question": "How do I reach out for a new project?",
+      "answer": "Use the contact form at the bottom of the page or message me directly on WhatsApp or social media. I reply quickly with next steps."
+    },
+    {
+      "question": "Do you offer support after deployment?",
+      "answer": "I provide ongoing support, troubleshooting, and updates after deployment to keep your project stable and growing."
+    }
+  ]
+}

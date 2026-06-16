@@ -1,0 +1,63 @@
+backend:
+  name: github
+  repo: Tech-Savvy-code/portfolio
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "about"
+    label: "About"
+    folder: "content"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Intro", name: "intro", widget: "text" }
+      - { label: "Description", name: "description", widget: "marked" }
+      - { label: "Resume URL", name: "resumeUrl", widget: "string", required: false }
+
+  - name: "projects"
+    label: "Projects"
+    folder: "content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Repo URL", name: "repoUrl", widget: "string", required: false }
+      - { label: "Live URL", name: "liveUrl", widget: "string", required: false }
+      - { label: "Download URL", name: "downloadUrl", widget: "string", required: false }
+      - { label: "Icon Class", name: "iconClass", widget: "string", required: false }
+      - { label: "File", name: "file", widget: "file", required: false }
+
+  - name: "skills"
+    label: "Skills"
+    folder: "content/skills"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Icon Class", name: "iconClass", widget: "string", required: false }
+      - { label: "Color Class", name: "colorClass", widget: "string", required: false }
+      - { label: "Badges", name: "badges", widget: "list", field: { label: "Badge", name: "badge", widget: "string" } }
+
+  - name: "credentials"
+    label: "Credentials"
+    folder: "content/credentials"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Type", name: "type", widget: "select", options: ["certification", "recommendation", "education", "clearance"] }
+      - { label: "File", name: "file", widget: "file" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+
+  - name: "faqs"
+    label: "FAQs"
+    folder: "content/faqs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Question", name: "question", widget: "string" }
+      - { label: "Answer", name: "answer", widget: "text" }

@@ -2,6 +2,156 @@
 const menuIcon = document.querySelector('#menu-icon');
 const navbar = document.querySelector('.navbar');
 
+/* ===== NETLIFY CMS JSON DATA LOADER ===== */
+const cmsPaths = {
+  about: 'content/about.json',
+  skills: 'content/skills.json',
+  services: 'content/services.json',
+  faqs: 'content/faqs.json',
+  projects: 'content/projects.json',
+  credentials: 'content/credentials.json'
+};
+
+let credentialsData = {
+  certifications: [],
+  recommendations: [],
+  education: [],
+  clearance: []
+};
+
+async function loadJson(path) {
+  try {
+    const response = await fetch(path);
+    if (!response.ok) return null;
+    return await response.json();
+  } catch (error) {
+    console.warn('Failed to load JSON:', path, error);
+    return null;
+  }
+}
+
+function renderAbout(data) {
+  if (!data) return;
+  const aboutContent = document.querySelector('.about-content');
+  if (!aboutContent) return;
+
+  aboutContent.innerHTML = `
+    <h2>About <span>Me</span></h2>
+    ${data.intro ? `<p>${data.intro}</p>` : ''}
+    ${data.description ? `<p>${data.description}</p>` : ''}
+    ${data.resumeUrl ? `<a href="${data.resumeUrl}" target="_blank" rel="noopener noreferrer" class="btn">View Résumé</a>` : ''}
+  `;
+}
+
+function renderSkills(items) {
+  const container = document.querySelector('.skills-container');
+  if (!items || !container) return;
+
+  container.innerHTML = items.map(item => {
+    const badges = Array.isArray(item.badges) ? item.badges : [];
+    return `
+      <div class="skill-card ${item.colorClass || 'green'}">
+        <i class="bx ${item.iconClass || 'bx-mobile-alt'}"></i>
+        <h4>${item.title || 'Skill Category'}</h4>
+        <div class="skill-badges">
+          ${badges.map(badge => `<span>${badge}</span>`).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderServices(items) {
+  const container = document.querySelector('.services-container');
+  if (!items || !container) return;
+
+  container.innerHTML = items.map(item => `
+    <div class="service-box ${item.colorClass || 'green'}">
+      <div class="service-info">
+        <i class="bx ${item.iconClass || 'bx-code-alt'}"></i>
+        <h4>${item.title || 'Service Title'}</h4>
+        <p>${item.description || 'Service description.'}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderFaqs(items) {
+  const faqGrid = document.querySelector('.faq-grid');
+  if (!items || !faqGrid) return;
+
+  faqGrid.innerHTML = items.map(item => `
+    <div class="faq-item">
+      <button class="faq-question" type="button">
+        ${item.question || 'FAQ question?'}
+        <i class="bx bx-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+        <p>${item.answer || 'FAQ answer content.'}</p>
+      </div>
+    </div>
+  `).join('');
+
+  setupFaqAccordion();
+}
+
+function renderProjects(items) {
+  const container = document.querySelector('.projects-container');
+  if (!items || !container) return;
+
+  container.innerHTML = items.map(item => {
+    const repoLink = item.repoUrl ? `<a href="${item.repoUrl}" target="_blank" class="btn">GitHub</a>` : '';
+    const liveLink = item.liveUrl ? `<a href="${item.liveUrl}" target="_blank" class="btn">View Live</a>` : '';
+    const downloadLink = item.downloadUrl ? `<a href="${item.downloadUrl}" target="_blank" class="btn">Download App</a>` : '';
+
+    return `
+      <div class="project-card">
+        <div class="project-icon ${item.iconClass || 'tusome-icon'}">
+          <i class="bx ${item.icon || 'bxs-code-block'}"></i>
+        </div>
+        <div class="project-info">
+          <h3>${item.title || 'Project Title'}</h3>
+          <p>${item.description || 'Project details.'}</p>
+          <div class="project-links">
+            ${repoLink}
+            ${liveLink}
+            ${downloadLink}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderCredentials(data) {
+  if (!data || !Array.isArray(data)) return;
+
+  credentialsData = {
+    certifications: data.filter(item => item.type === 'certification'),
+    recommendations: data.filter(item => item.type === 'recommendation'),
+    education: data.filter(item => item.type === 'education'),
+    clearance: data.filter(item => item.type === 'clearance')
+  };
+}
+
+async function loadCMSContent() {
+  const [aboutData, skillsData, servicesData, faqsData, projectsData, credentialsDataJson] = await Promise.all([
+    loadJson(cmsPaths.about),
+    loadJson(cmsPaths.skills),
+    loadJson(cmsPaths.services),
+    loadJson(cmsPaths.faqs),
+    loadJson(cmsPaths.projects),
+    loadJson(cmsPaths.credentials)
+  ]);
+
+  if (aboutData) renderAbout(aboutData);
+  if (skillsData?.skills) renderSkills(skillsData.skills);
+  if (servicesData?.services) renderServices(servicesData.services);
+  if (faqsData?.faqs) renderFaqs(faqsData.faqs);
+  if (projectsData?.projects) renderProjects(projectsData.projects);
+  if (credentialsDataJson?.credentials) renderCredentials(credentialsDataJson.credentials);
+}
+
 // Toggle navbar visibility and menu icon
 menuIcon.onclick = () => {
   menuIcon.classList.toggle('bx-x');   // Switch menu icon to X
@@ -89,7 +239,9 @@ if (form) {
 }
 
 /* ===== PROJECTS SLIDESHOW ===== */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadCMSContent();
+
   const slider = document.querySelector('.projects-slider');
   if (!slider) return;
 

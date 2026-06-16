@@ -1,0 +1,28 @@
+{
+  "services": [
+    {
+      "title": "Android App Development",
+      "iconClass": "bx-code-alt",
+      "colorClass": "green",
+      "description": "Designing and developing secure, scalable Android applications with modern UI and Firebase integration."
+    },
+    {
+      "title": "Web Development",
+      "iconClass": "bx-laptop",
+      "colorClass": "blue",
+      "description": "Building responsive, efficient web systems using modern frontend and backend technologies."
+    },
+    {
+      "title": "IT Support & Systems",
+      "iconClass": "bx-support",
+      "colorClass": "purple",
+      "description": "Providing technical support, system maintenance, troubleshooting, and network administration."
+    },
+    {
+      "title": "System Management",
+      "iconClass": "bx-server",
+      "colorClass": "orange",
+      "description": "Managing databases, servers, and IT infrastructure to ensure reliability and performance."
+    }
+  ]
+}
