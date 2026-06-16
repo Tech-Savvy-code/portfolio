@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: Tech-Savvy-code/portfolio
+  name: git-gateway
   branch: main
 
 media_folder: "assets/uploads"
