@@ -23,6 +23,7 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
   
@@ -628,5 +629,16 @@ I’m Opiyo Nickson, a software developer who builds Android apps, web systems, 
     <iframe id="pdf-frame"></iframe>
   </div>
 
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', user => {
+        if (!user) {
+          window.netlifyIdentity.on('login', () => {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+  </script>
   </body>
 </html>
