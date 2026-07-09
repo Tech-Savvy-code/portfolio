@@ -2,7 +2,7 @@
 const menuIcon = document.querySelector('#menu-icon');
 const navbar = document.querySelector('.navbar');
 
-/* ===== NETLIFY CMS JSON DATA LOADER ===== */
+/* ===== DECAP CMS JSON DATA LOADER ===== */
 const cmsPaths = {
   about: 'content/about.json',
   skills: 'content/skills.json',
@@ -103,11 +103,13 @@ function renderProjects(items) {
     const repoLink = item.repoUrl ? `<a href="${item.repoUrl}" target="_blank" class="btn">GitHub</a>` : '';
     const liveLink = item.liveUrl ? `<a href="${item.liveUrl}" target="_blank" class="btn">View Live</a>` : '';
     const downloadLink = item.downloadUrl ? `<a href="${item.downloadUrl}" target="_blank" class="btn">Download App</a>` : '';
+    const iconClass = item.icon || (item.iconClass && item.iconClass.startsWith('bx') ? item.iconClass : 'bxs-code-block');
+    const iconStyleClass = item.iconClass && !item.iconClass.startsWith('bx') ? item.iconClass : 'project-default-icon';
 
     return `
       <div class="project-card">
-        <div class="project-icon ${item.iconClass || 'tusome-icon'}">
-          <i class="bx ${item.icon || 'bxs-code-block'}"></i>
+        <div class="project-icon ${iconStyleClass}">
+          <i class="bx ${iconClass}"></i>
         </div>
         <div class="project-info">
           <h3>${item.title || 'Project Title'}</h3>
@@ -151,8 +153,7 @@ async function loadCMSContent() {
   if (skillsData?.skills) renderSkills(skillsData.skills);
   if (servicesData?.services) renderServices(servicesData.services);
   if (faqsData?.faqs) renderFaqs(faqsData.faqs);
-  // Projects use hardcoded HTML instead of CMS JSON
-  // if (projectsData?.projects) renderProjects(projectsData.projects);
+  if (projectsData?.projects) renderProjects(projectsData.projects);
   if (credentialsDataJson?.credentials) renderCredentials(credentialsDataJson.credentials);
 }
 

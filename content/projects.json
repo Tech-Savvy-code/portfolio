@@ -1,32 +1,44 @@
 {
   "projects": [
     {
-      "title": "Tusome – Tutoring Android App",
+      "title": "Tusome - Tutoring Android App",
       "description": "Tusome is an Android-based tutoring application that connects two users through a unique session code. It supports real-time video calls, microphone communication, and secure authentication using Firebase.",
       "repoUrl": "https://github.com/Tech-Savvy-code",
       "downloadUrl": "https://github.com/Tech-Savvy-code/MyAndroidApp/releases/download/v1.0/tusome-v1.0.1.apk",
-      "iconClass": "bx bxs-book-reader"
+      "iconClass": "tusome-icon",
+      "icon": "bxs-book-reader"
     },
     {
       "title": "IT Support Web System",
       "description": "A web-based IT support system designed to manage technical support requests, track hardware and software issues, and streamline IT operations.",
       "repoUrl": "https://github.com/Tech-Savvy-code",
       "liveUrl": "https://supportweb.netlify.app/",
-      "iconClass": "bx bxs-server"
+      "iconClass": "it-icon",
+      "icon": "bxs-server"
     },
     {
       "title": "TechAssist Hub Mobile App",
       "description": "A mobile tech support app where staff create support requests and admins assign them to technicians from the relevant departments.",
       "repoUrl": "https://github.com/Tech-Savvy-code",
       "downloadUrl": "https://github.com/Tech-Savvy-code/TechAssist-Hub--Mobile/releases/download/v1.0.0/TechAssist-Hub.MobileApp.apk",
-      "iconClass": "bx bx-support"
+      "iconClass": "support-icon",
+      "icon": "bx-support"
     },
     {
       "title": "KAFU AI Website",
       "description": "KAFU AI is a React website that shares information about Kaimosi Friends University, including offered programs, campus navigation, and a chatbot for answering student questions.",
       "repoUrl": "https://github.com/Tech-Savvy-code",
       "liveUrl": "https://kafuai.netlify.app/",
-      "iconClass": "bx bx-brain"
+      "iconClass": "kafu-icon",
+      "icon": "bx-brain"
+    },
+    {
+      "title": "StudentRedressal App",
+      "description": "StudentRedressal is a React Native mobile app where students submit complaints, admins assign them to staff, and the responsible teams resolve issues while giving clear feedback to students.",
+      "repoUrl": "https://github.com/Tech-Savvy-code",
+      "downloadUrl": "https://github.com/Tech-Savvy-code/StudentRedressal_ReactApp/releases/download/v1.0.1/StudentRedressalApp.apk",
+      "iconClass": "redressal-icon",
+      "icon": "bx-message-square-check"
     }
   ]
 }

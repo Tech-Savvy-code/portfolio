@@ -1922,6 +1922,11 @@ section {
   color: white;
 }
 
+.project-default-icon {
+  background: linear-gradient(135deg, #0ea5e9, #22c55e);
+  color: white;
+}
+
 /* ===== Project Info ===== */
 .project-info {
   padding: 2rem 2.2rem;
