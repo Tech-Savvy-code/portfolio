@@ -1,5 +1,13 @@
 {
-  "intro": "I'm Opiyo Nickson, an Android, React Native & Web Developer and IT Systems Specialist.",
-  "description": "I build responsive apps, web systems, and IT solutions using Java, JavaScript, React, Flutter, and cloud platforms. My work focuses on clean design, reliable performance, and easy maintenance.",
-  "resumeUrl": "assets/resume.pdf"
+  "heading": "About",
+  "highlight": "Me",
+  "image": "assets/me.jpg",
+  "imageAlt": "Opiyo Nickson",
+  "paragraphs": [
+    "I'm Opiyo Nickson, an Android, React Native & Web Developer and IT Systems Specialist with a strong passion for building practical, user-focused digital solutions.",
+    "I specialize in developing Android applications, web-based systems, and providing hands-on IT support. I've worked on university-level systems, real-world mobile apps, and freelance projects - taking ideas from design through development to deployment.",
+    "My technical stack includes Java, Python, JavaScript, React, and React Native, along with modern frameworks and tools. I enjoy continuous learning and aim to build scalable solutions that solve real-world problems."
+  ],
+  "resumeUrl": "assets/resume.pdf",
+  "resumeButtonText": "View Resume"
 }

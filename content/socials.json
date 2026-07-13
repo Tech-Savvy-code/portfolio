@@ -1,0 +1,40 @@
+{
+  "socials": [
+    {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/profile.php?id=100085057493772",
+      "iconClass": "bxl-facebook",
+      "featured": true
+    },
+    {
+      "label": "WhatsApp",
+      "url": "https://wa.me/254742882232?text=Hello%20Opiyo!",
+      "iconClass": "bxl-whatsapp",
+      "featured": true
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/Tech-Savvy-code",
+      "iconClass": "bxl-github",
+      "featured": true
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/opiyo-nickson-b7a673354/",
+      "iconClass": "bxl-linkedin-square",
+      "featured": false
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/nicks4691/",
+      "iconClass": "bxl-instagram-alt",
+      "featured": false
+    },
+    {
+      "label": "Twitter",
+      "url": "https://x.com/OpiyoNickson01",
+      "iconClass": "bxl-twitter",
+      "featured": false
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "heading": "Get In Touch",
+  "highlight": "Touch",
+  "subtitle": "Have a project in mind? Let's discuss your idea and bring it to life together.",
+  "cards": [
+    {
+      "title": "Email",
+      "description": "Send me a direct message",
+      "label": "opiyonick243@gmail.com",
+      "url": "mailto:opiyonick243@gmail.com",
+      "iconClass": "bxs-envelope"
+    },
+    {
+      "title": "WhatsApp",
+      "description": "Quick chat on WhatsApp",
+      "label": "+254 742 882 232",
+      "url": "https://wa.me/254742882232",
+      "iconClass": "bxl-whatsapp"
+    },
+    {
+      "title": "Phone",
+      "description": "Call me anytime",
+      "label": "+254 742 882 232",
+      "url": "tel:+254742882232",
+      "iconClass": "bxs-phone"
+    }
+  ],
+  "form": {
+    "nameLabel": "Full Name *",
+    "namePlaceholder": "Your full name",
+    "emailLabel": "Email *",
+    "emailPlaceholder": "your.email@example.com",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "+254 7XX XXX XXX",
+    "subjectLabel": "Subject *",
+    "subjectPlaceholder": "Project type or inquiry",
+    "messageLabel": "Message *",
+    "messagePlaceholder": "Tell me about your project, timeline, and requirements...",
+    "buttonText": "Send Message",
+    "successMessage": "Message sent successfully!",
+    "errorMessage": "Submission failed. Please try again!"
+  }
+}

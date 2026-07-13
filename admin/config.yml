@@ -7,16 +7,97 @@ public_folder: "/assets"
 
 collections:
   - name: "site_content"
-    label: "Site Content"
+    label: "Portfolio Content"
     files:
+      - name: "site"
+        label: "Site Settings, SEO & Navigation"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - { label: "Logo First Text", name: "logoFirst", widget: "string" }
+          - { label: "Logo Last Text", name: "logoLast", widget: "string" }
+          - { label: "Browser Title", name: "siteTitle", widget: "string" }
+          - { label: "Meta Description", name: "metaDescription", widget: "text" }
+          - { label: "Meta Keywords", name: "metaKeywords", widget: "string", required: false }
+          - { label: "Author", name: "author", widget: "string" }
+          - { label: "Canonical URL", name: "canonicalUrl", widget: "string" }
+          - { label: "Open Graph Image", name: "ogImage", widget: "image", required: false }
+          - { label: "Theme Color", name: "themeColor", widget: "string", required: false }
+          - label: "Splash Screen Messages"
+            name: "splashMessages"
+            widget: "list"
+            field: { label: "Message", name: "message", widget: "string" }
+          - label: "Navigation Links"
+            name: "navigation"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+          - label: "Section Headings"
+            name: "sectionHeadings"
+            widget: "object"
+            fields:
+              - { label: "Services Heading", name: "services", widget: "string" }
+              - { label: "Skills Heading", name: "skills", widget: "string" }
+              - { label: "Projects Heading", name: "projects", widget: "string" }
+              - { label: "FAQ Heading", name: "faq", widget: "string" }
+          - label: "Section Subtitles"
+            name: "sectionSubtitles"
+            widget: "object"
+            fields:
+              - { label: "Skills Subtitle", name: "skills", widget: "text" }
+              - { label: "FAQ Subtitle", name: "faq", widget: "text" }
+              - { label: "FAQ Note", name: "faqNote", widget: "text" }
+
+      - name: "home"
+        label: "Home / Hero"
+        file: "content/home.json"
+        format: "json"
+        fields:
+          - { label: "Headline", name: "headline", widget: "string" }
+          - label: "Roles"
+            name: "roles"
+            widget: "list"
+            field: { label: "Role", name: "role", widget: "string" }
+          - { label: "Intro Text", name: "intro", widget: "text" }
+          - { label: "Hero Image", name: "image", widget: "image" }
+          - { label: "Image Alt Text", name: "imageAlt", widget: "string" }
+          - { label: "Primary Button Text", name: "primaryButtonText", widget: "string" }
+          - { label: "Primary Button URL", name: "primaryButtonUrl", widget: "string" }
+          - { label: "Secondary Button Text", name: "secondaryButtonText", widget: "string" }
+          - { label: "Secondary Button URL", name: "secondaryButtonUrl", widget: "file", required: false }
+
       - name: "about"
         label: "About"
         file: "content/about.json"
         format: "json"
         fields:
-          - { label: "Intro", name: "intro", widget: "text" }
-          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Highlighted Heading Word", name: "highlight", widget: "string" }
+          - { label: "About Image", name: "image", widget: "image" }
+          - { label: "Image Alt Text", name: "imageAlt", widget: "string" }
+          - label: "Paragraphs"
+            name: "paragraphs"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
           - { label: "Resume URL", name: "resumeUrl", widget: "file", required: false }
+          - { label: "Resume Button Text", name: "resumeButtonText", widget: "string" }
+
+      - name: "socials"
+        label: "Social Links"
+        file: "content/socials.json"
+        format: "json"
+        fields:
+          - label: "Social Links"
+            name: "socials"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Boxicons Icon Class", name: "iconClass", widget: "string", hint: "Example: bxl-github" }
+              - { label: "Show Before More Button", name: "featured", widget: "boolean", default: false }
 
       - name: "skills"
         label: "Skills"
@@ -103,3 +184,63 @@ collections:
                   - clearance
               - { label: "File", name: "file", widget: "file" }
               - { label: "Description", name: "description", widget: "text" }
+
+      - name: "contact"
+        label: "Contact"
+        file: "content/contact.json"
+        format: "json"
+        fields:
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Highlighted Word", name: "highlight", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "text" }
+          - label: "Contact Cards"
+            name: "cards"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - { label: "Visible Label", name: "label", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Boxicons Icon Class", name: "iconClass", widget: "string" }
+          - label: "Contact Form Text"
+            name: "form"
+            widget: "object"
+            fields:
+              - { label: "Name Label", name: "nameLabel", widget: "string" }
+              - { label: "Name Placeholder", name: "namePlaceholder", widget: "string" }
+              - { label: "Email Label", name: "emailLabel", widget: "string" }
+              - { label: "Email Placeholder", name: "emailPlaceholder", widget: "string" }
+              - { label: "Phone Label", name: "phoneLabel", widget: "string" }
+              - { label: "Phone Placeholder", name: "phonePlaceholder", widget: "string" }
+              - { label: "Subject Label", name: "subjectLabel", widget: "string" }
+              - { label: "Subject Placeholder", name: "subjectPlaceholder", widget: "string" }
+              - { label: "Message Label", name: "messageLabel", widget: "string" }
+              - { label: "Message Placeholder", name: "messagePlaceholder", widget: "text" }
+              - { label: "Button Text", name: "buttonText", widget: "string" }
+              - { label: "Success Message", name: "successMessage", widget: "string" }
+              - { label: "Error Message", name: "errorMessage", widget: "string" }
+
+      - name: "footer"
+        label: "Footer"
+        file: "content/footer.json"
+        format: "json"
+        fields:
+          - { label: "Brand First Text", name: "brandFirst", widget: "string" }
+          - { label: "Brand Last Text", name: "brandLast", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Quick Links Title", name: "quickLinksTitle", widget: "string" }
+          - label: "Quick Links"
+            name: "quickLinks"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+          - { label: "CTA Title", name: "ctaTitle", widget: "string" }
+          - { label: "CTA Text", name: "ctaText", widget: "text" }
+          - { label: "CTA Button Text", name: "ctaButtonText", widget: "string" }
+          - { label: "CTA Button URL", name: "ctaButtonUrl", widget: "file", required: false }
+          - { label: "Copyright", name: "copyright", widget: "string" }
+          - { label: "Sitemap Label", name: "sitemapLabel", widget: "string" }
+          - { label: "Sitemap URL", name: "sitemapUrl", widget: "string" }

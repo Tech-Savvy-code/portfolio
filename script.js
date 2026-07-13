@@ -4,12 +4,28 @@ const navbar = document.querySelector('.navbar');
 
 /* ===== DECAP CMS JSON DATA LOADER ===== */
 const cmsPaths = {
+  site: 'content/site.json',
+  home: 'content/home.json',
   about: 'content/about.json',
   skills: 'content/skills.json',
   services: 'content/services.json',
   faqs: 'content/faqs.json',
   projects: 'content/projects.json',
-  credentials: 'content/credentials.json'
+  credentials: 'content/credentials.json',
+  socials: 'content/socials.json',
+  contact: 'content/contact.json',
+  footer: 'content/footer.json'
+};
+
+let splashMessages = [
+  'Welcome to',
+  'My Coding World',
+  'Explore My Work & Skills'
+];
+
+let contactFormMessages = {
+  success: 'Message sent successfully!',
+  error: 'Submission failed. Please try again!'
 };
 
 let credentialsData = {
@@ -30,17 +46,124 @@ async function loadJson(path) {
   }
 }
 
+function setText(selector, value) {
+  const element = document.querySelector(selector);
+  if (element && value) element.textContent = value;
+}
+
+function setMeta(selector, value) {
+  const element = document.querySelector(selector);
+  if (element && value) element.setAttribute('content', value);
+}
+
+function renderLogo(selector, first, last) {
+  const logo = document.querySelector(selector);
+  if (!logo || (!first && !last)) return;
+  logo.innerHTML = `${first || ''}${last ? ` <span>${last}</span>` : ''}`;
+}
+
+function renderSite(data) {
+  if (!data) return;
+
+  if (data.siteTitle) {
+    document.title = data.siteTitle;
+    setMeta('meta[property="og:title"]', data.siteTitle);
+  }
+  setMeta('meta[name="description"]', data.metaDescription);
+  setMeta('meta[property="og:description"]', data.metaDescription);
+  setMeta('meta[name="keywords"]', data.metaKeywords);
+  setMeta('meta[name="author"]', data.author);
+  setMeta('meta[property="og:image"]', data.ogImage);
+  setMeta('meta[name="theme-color"]', data.themeColor);
+
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical && data.canonicalUrl) canonical.setAttribute('href', data.canonicalUrl);
+
+  renderLogo('.logo', data.logoFirst, data.logoLast);
+
+  const navList = document.querySelector('.navbar > ul');
+  if (navList && Array.isArray(data.navigation)) {
+    const credentialsDropdown = navList.querySelector('.dropdown');
+    navList.innerHTML = '';
+    data.navigation.forEach(link => {
+      if (!link.label || !link.url) return;
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="${link.url}">${link.label}</a>`;
+      if (link.url === '#contact' && credentialsDropdown) {
+        navList.appendChild(credentialsDropdown);
+      }
+      navList.appendChild(li);
+    });
+    if (credentialsDropdown && !navList.contains(credentialsDropdown)) {
+      navList.appendChild(credentialsDropdown);
+    }
+  }
+
+  const headings = data.sectionHeadings || {};
+  setText('#services .heading', headings.services);
+  setText('#skills .heading', headings.skills);
+  setText('#projects .heading', headings.projects);
+  setText('#faq .heading', headings.faq);
+
+  const subtitles = data.sectionSubtitles || {};
+  setText('.skills-subtitle', subtitles.skills);
+  setText('#faq .section-subtitle', subtitles.faq);
+  const faqNote = document.querySelector('.faq-note p');
+  if (faqNote && subtitles.faqNote) faqNote.textContent = subtitles.faqNote;
+
+  if (Array.isArray(data.splashMessages) && data.splashMessages.length > 0) {
+    splashMessages = data.splashMessages;
+  }
+}
+
+function renderHome(data) {
+  if (!data) return;
+
+  setText('.home-content > h1', data.headline);
+
+  const roles = Array.isArray(data.roles) ? data.roles : [];
+  const roleHeading = document.querySelector('.home-content > h3');
+  if (roleHeading && roles.length > 0) {
+    roleHeading.innerHTML = roles.map(role => `<span class="role">${role}</span>`).join(' | ');
+  }
+
+  setText('.home-content > p', data.intro);
+
+  const image = document.querySelector('.home-image img');
+  if (image) {
+    if (data.image) image.setAttribute('src', data.image);
+    if (data.imageAlt) image.setAttribute('alt', data.imageAlt);
+  }
+
+  const btnGroup = document.querySelector('.home-content .btn-group');
+  if (btnGroup) {
+    btnGroup.innerHTML = `
+      ${data.primaryButtonText && data.primaryButtonUrl ? `<a href="${data.primaryButtonUrl}" class="btn primary-btn">${data.primaryButtonText}</a>` : ''}
+      ${data.secondaryButtonText && data.secondaryButtonUrl ? `<a href="${data.secondaryButtonUrl}" target="_blank" class="btn secondary-btn">${data.secondaryButtonText}</a>` : ''}
+    `;
+  }
+}
+
 function renderAbout(data) {
   if (!data) return;
   const aboutContent = document.querySelector('.about-content');
   if (!aboutContent) return;
 
+  const paragraphs = Array.isArray(data.paragraphs) ? data.paragraphs : [data.intro, data.description].filter(Boolean);
+  const heading = data.heading || 'About';
+  const highlight = data.highlight || 'Me';
+
   aboutContent.innerHTML = `
-    <h2>About <span>Me</span></h2>
-    ${data.intro ? `<p>${data.intro}</p>` : ''}
-    ${data.description ? `<p>${data.description}</p>` : ''}
-    ${data.resumeUrl ? `<a href="${data.resumeUrl}" target="_blank" rel="noopener noreferrer" class="btn">View Résumé</a>` : ''}
+    <h2>${heading} <span>${highlight}</span></h2>
+    ${paragraphs.map(paragraph => `<p>${paragraph}</p>`).join('')}
+    ${data.resumeUrl ? `<a href="${data.resumeUrl}" target="_blank" rel="noopener noreferrer" class="btn">${data.resumeButtonText || 'View Resume'}</a>` : ''}
   `;
+
+  const aboutImage = document.querySelector('.about-img img');
+  if (aboutImage) {
+    if (data.image) aboutImage.setAttribute('src', data.image);
+    if (data.imageAlt) aboutImage.setAttribute('alt', data.imageAlt);
+  }
 }
 
 function renderSkills(items) {
@@ -139,22 +262,145 @@ function renderCredentials(data) {
   };
 }
 
+function renderSocials(data) {
+  const socials = data?.socials;
+  if (!Array.isArray(socials)) return;
+
+  const featured = socials.filter(item => item.featured);
+  const more = socials.filter(item => !item.featured);
+
+  document.querySelectorAll('.social-icons').forEach(container => {
+    container.innerHTML = `
+      ${featured.map(item => `
+        <a href="${item.url}" target="_blank" rel="noopener noreferrer" data-tooltip="${item.label}">
+          <i class="bx ${item.iconClass || 'bx-link'}"></i>
+        </a>
+      `).join('')}
+      <div class="more-icons" style="display: none; gap: 1rem; flex-wrap: nowrap;">
+        ${more.map(item => `
+          <a href="${item.url}" target="_blank" rel="noopener noreferrer" data-tooltip="${item.label}">
+            <i class="bx ${item.iconClass || 'bx-link'}"></i>
+          </a>
+        `).join('')}
+      </div>
+      ${more.length > 0 ? `
+        <a href="#" class="btn-more toggle-social" data-tooltip="More Accounts">
+          <i class="bx bx-dots-horizontal-rounded"></i>
+        </a>
+      ` : ''}
+    `;
+  });
+
+  setupSocialToggles();
+}
+
+function renderContact(data) {
+  if (!data) return;
+
+  const heading = document.querySelector('.contact-header h2');
+  if (heading && data.heading) {
+    if (data.highlight && data.heading.includes(data.highlight)) {
+      heading.innerHTML = data.heading.replace(data.highlight, `<span>${data.highlight}</span>`);
+    } else {
+      heading.textContent = data.heading;
+    }
+  }
+  setText('.contact-subtitle', data.subtitle);
+
+  const info = document.querySelector('.contact-info');
+  if (info && Array.isArray(data.cards)) {
+    info.innerHTML = data.cards.map(card => `
+      <div class="info-card">
+        <i class="bx ${card.iconClass || 'bx-link'}"></i>
+        <h4>${card.title || ''}</h4>
+        <p>${card.description || ''}</p>
+        <a href="${card.url || '#'}" ${card.url?.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}>${card.label || card.url || ''}</a>
+      </div>
+    `).join('');
+  }
+
+  const form = data.form || {};
+  setText('label[for="full_name"]', form.nameLabel);
+  setText('label[for="email"]', form.emailLabel);
+  setText('label[for="phone"]', form.phoneLabel);
+  setText('label[for="subject"]', form.subjectLabel);
+  setText('label[for="message"]', form.messageLabel);
+
+  const placeholders = {
+    full_name: form.namePlaceholder,
+    email: form.emailPlaceholder,
+    phone: form.phonePlaceholder,
+    subject: form.subjectPlaceholder,
+    message: form.messagePlaceholder
+  };
+  Object.entries(placeholders).forEach(([id, value]) => {
+    const field = document.getElementById(id);
+    if (field && value) field.setAttribute('placeholder', value);
+  });
+  setText('.submit-btn', form.buttonText);
+
+  contactFormMessages = {
+    success: form.successMessage || contactFormMessages.success,
+    error: form.errorMessage || contactFormMessages.error
+  };
+
+  const success = document.getElementById('form-success');
+  if (success && form.successMessage) success.textContent = form.successMessage;
+}
+
+function renderFooter(data) {
+  if (!data) return;
+
+  renderLogo('.footer-logo', data.brandFirst, data.brandLast);
+  setText('.footer-brand > p', data.description);
+  setText('.footer-links h3', data.quickLinksTitle);
+
+  const quickLinks = document.querySelector('.footer-nav');
+  if (quickLinks && Array.isArray(data.quickLinks)) {
+    quickLinks.innerHTML = data.quickLinks.map(link => `<li><a href="${link.url}">${link.label}</a></li>`).join('');
+  }
+
+  setText('.footer-contact h3', data.ctaTitle);
+  setText('.footer-contact p', data.ctaText);
+  const cta = document.querySelector('.footer-contact .btn');
+  if (cta) {
+    if (data.ctaButtonText) cta.textContent = data.ctaButtonText;
+    if (data.ctaButtonUrl) cta.setAttribute('href', data.ctaButtonUrl);
+  }
+
+  setText('.copyright', data.copyright);
+  const sitemap = document.querySelector('.footer-sitemap');
+  if (sitemap && data.sitemapUrl) {
+    sitemap.innerHTML = `${data.sitemapLabel || 'Sitemap:'} <a href="${data.sitemapUrl}" target="_blank" rel="noopener noreferrer">${data.sitemapUrl}</a>`;
+  }
+}
+
 async function loadCMSContent() {
-  const [aboutData, skillsData, servicesData, faqsData, projectsData, credentialsDataJson] = await Promise.all([
+  const [siteData, homeData, aboutData, skillsData, servicesData, faqsData, projectsData, credentialsDataJson, socialsData, contactData, footerData] = await Promise.all([
+    loadJson(cmsPaths.site),
+    loadJson(cmsPaths.home),
     loadJson(cmsPaths.about),
     loadJson(cmsPaths.skills),
     loadJson(cmsPaths.services),
     loadJson(cmsPaths.faqs),
     loadJson(cmsPaths.projects),
-    loadJson(cmsPaths.credentials)
+    loadJson(cmsPaths.credentials),
+    loadJson(cmsPaths.socials),
+    loadJson(cmsPaths.contact),
+    loadJson(cmsPaths.footer)
   ]);
 
+  if (siteData) renderSite(siteData);
+  if (homeData) renderHome(homeData);
   if (aboutData) renderAbout(aboutData);
   if (skillsData?.skills) renderSkills(skillsData.skills);
   if (servicesData?.services) renderServices(servicesData.services);
   if (faqsData?.faqs) renderFaqs(faqsData.faqs);
   if (projectsData?.projects) renderProjects(projectsData.projects);
   if (credentialsDataJson?.credentials) renderCredentials(credentialsDataJson.credentials);
+  if (footerData) renderFooter(footerData);
+  if (contactData) renderContact(contactData);
+  if (socialsData) renderSocials(socialsData);
 }
 
 // Toggle navbar visibility and menu icon
@@ -172,28 +418,33 @@ menuIcon.onclick = () => {
 
 
 /* ===== SOCIAL ICONS "MORE / LESS" TOGGLE (REUSABLE) ===== */
-// Works for Home, Footer, or any section with .social-icons
-document.querySelectorAll('.toggle-social').forEach(toggleBtn => {
-  toggleBtn.addEventListener('click', function (e) {
-    e.preventDefault(); // Prevent page jump
+function setupSocialToggles() {
+  document.querySelectorAll('.toggle-social').forEach(toggleBtn => {
+    if (toggleBtn.dataset.bound === 'true') return;
+    toggleBtn.dataset.bound = 'true';
 
-    // Get the closest social-icons container
-    const socialContainer = toggleBtn.closest('.social-icons');
-    const moreIcons = socialContainer.querySelector('.more-icons');
+    toggleBtn.addEventListener('click', function (e) {
+      e.preventDefault();
 
-    // Check current state
-    const isHidden =
-      moreIcons.style.display === 'none' || moreIcons.style.display === '';
+      const socialContainer = toggleBtn.closest('.social-icons');
+      const moreIcons = socialContainer?.querySelector('.more-icons');
+      if (!moreIcons) return;
 
-    if (isHidden) {
-      moreIcons.style.display = 'flex';                 // Show icons
-      toggleBtn.setAttribute('data-tooltip', 'Less Accounts');
-    } else {
-      moreIcons.style.display = 'none';                 // Hide icons
-      toggleBtn.setAttribute('data-tooltip', 'More Accounts');
-    }
+      const isHidden =
+        moreIcons.style.display === 'none' || moreIcons.style.display === '';
+
+      if (isHidden) {
+        moreIcons.style.display = 'flex';
+        toggleBtn.setAttribute('data-tooltip', 'Less Accounts');
+      } else {
+        moreIcons.style.display = 'none';
+        toggleBtn.setAttribute('data-tooltip', 'More Accounts');
+      }
+    });
   });
-});
+}
+
+setupSocialToggles();
 
 
 /* ===== CONTACT FORM SUBMISSION ===== */
@@ -218,7 +469,7 @@ if (form) {
         toast: true,
         position: 'top',
         icon: 'success',
-        title: 'Message sent successfully!',
+        title: contactFormMessages.success,
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
@@ -234,7 +485,7 @@ if (form) {
         toast: true,
         position: 'top',
         icon: 'error',
-        title: 'Submission failed. Please try again!',
+        title: contactFormMessages.error,
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true
@@ -420,11 +671,7 @@ window.addEventListener('load', () => {
   const splashText = document.getElementById('splash-text');
   const splashSkip = document.getElementById('splash-skip');
 
-  const messages = [
-    'Welcome to',
-    'My Coding World',
-    'Explore My Work & Skills'
-  ];
+  const messages = splashMessages;
 
   let lineIndex = 0;
   let charIndex = 0;

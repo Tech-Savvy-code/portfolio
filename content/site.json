@@ -1,0 +1,49 @@
+{
+  "logoFirst": "OPIYO",
+  "logoLast": "NICKSON",
+  "siteTitle": "Opiyo Nickson - Software Developer Portfolio",
+  "metaDescription": "Opiyo Nickson - Professional software developer. Explore my portfolio showcasing innovative software solutions, technical skills, and professional services.",
+  "metaKeywords": "Opiyo Nickson, software developer, portfolio, software development, projects",
+  "author": "Opiyo Nickson",
+  "canonicalUrl": "https://opiyotech.netlify.app/",
+  "ogImage": "https://opiyotech.netlify.app/assets/opiyo.png",
+  "themeColor": "#0ef",
+  "splashMessages": [
+    "Welcome to",
+    "My Coding World",
+    "Explore My Work & Skills"
+  ],
+  "navigation": [
+    {
+      "label": "Home",
+      "url": "#home"
+    },
+    {
+      "label": "About",
+      "url": "#about"
+    },
+    {
+      "label": "Skills",
+      "url": "#skills"
+    },
+    {
+      "label": "Projects",
+      "url": "#projects"
+    },
+    {
+      "label": "Contact",
+      "url": "#contact"
+    }
+  ],
+  "sectionHeadings": {
+    "services": "Services",
+    "skills": "Skills & Tech Stack",
+    "projects": "Projects",
+    "faq": "Frequently Asked Questions"
+  },
+  "sectionSubtitles": {
+    "skills": "Technologies and tools I use to design, build, and deploy applications",
+    "faq": "Common questions about my work, technologies, and project collaboration.",
+    "faqNote": "Have more questions? Send a message through the contact section and I will respond with more details."
+  }
+}

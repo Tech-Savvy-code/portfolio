@@ -1,0 +1,31 @@
+{
+  "brandFirst": "Opiyo",
+  "brandLast": "Nickson",
+  "description": "Android & Web Developer | IT Systems Specialist crafting modern digital experiences, system automation, and secure interfaces for real users.",
+  "quickLinksTitle": "Quick Links",
+  "quickLinks": [
+    {
+      "label": "FAQ",
+      "url": "#faq"
+    },
+    {
+      "label": "Services",
+      "url": "#services"
+    },
+    {
+      "label": "About Me",
+      "url": "#about"
+    },
+    {
+      "label": "Contact Me",
+      "url": "#contact"
+    }
+  ],
+  "ctaTitle": "Let's work together",
+  "ctaText": "Interested in a new project or collaboration? Reach out and let's build something professional and impactful.",
+  "ctaButtonText": "Download CV",
+  "ctaButtonUrl": "assets/resume.pdf",
+  "copyright": "© Opiyo Nickson | All rights reserved",
+  "sitemapLabel": "Sitemap:",
+  "sitemapUrl": "https://opiyotech.netlify.app/sitemap.xml"
+}
