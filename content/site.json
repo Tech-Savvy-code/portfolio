@@ -1,13 +1,10 @@
 {
-  "logoFirst": "OPIYO",
-  "logoLast": "NICKSON",
-  "siteTitle": "Opiyo Nickson - Software Developer Portfolio",
-  "metaDescription": "Opiyo Nickson - Professional software developer. Explore my portfolio showcasing innovative software solutions, technical skills, and professional services.",
-  "metaKeywords": "Opiyo Nickson, software developer, portfolio, software development, projects",
-  "author": "Opiyo Nickson",
-  "canonicalUrl": "https://opiyotech.netlify.app/",
+  "logoLast": "Nickson",
   "ogImage": "https://opiyotech.netlify.app/assets/opiyo.png",
-  "themeColor": "#0ef",
+  "logoFirst": "Opiyo ",
+  "author": "Opiyo Nickson",
+  "metaKeywords": "Opiyo Nickson, software developer, portfolio, software development, projects",
+  "siteTitle": "Opiyo Nickson - Software Developer Portfolio",
   "splashMessages": [
     "Welcome to",
     "My Coding World",
@@ -45,5 +42,8 @@
     "skills": "Technologies and tools I use to design, build, and deploy applications",
     "faq": "Common questions about my work, technologies, and project collaboration.",
     "faqNote": "Have more questions? Send a message through the contact section and I will respond with more details."
-  }
+  },
+  "metaDescription": "Opiyo Nickson - Professional software developer. Explore my portfolio showcasing innovative software solutions, technical skills, and professional services.",
+  "themeColor": "#0ef",
+  "canonicalUrl": "https://opiyotech.netlify.app/"
 }
