@@ -47,8 +47,11 @@
     },
     {
       "title": "LMS Management",
-      "iconClass": "<i class=\"bx bx-book-library bx-remove-padding\" />",
-      "colorClass": "green"
+      "iconClass": "bx bx-book-library bx-remove-padding",
+      "colorClass": "green",
+      "badges": [
+        "Motivation"
+      ]
     }
   ]
 }
