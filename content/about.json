@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "heading": "About",
   "highlight": "Me",
   "image": "assets/me.jpg",
@@ -10,4 +11,9 @@
   ],
   "resumeUrl": "assets/resume.pdf",
   "resumeButtonText": "View Resume"
+=======
+  "intro": "I'm Opiyo Nickson Lukwisa, an Android, React Native & Web Developer and IT Systems Specialist.",
+  "description": "I build responsive apps, web systems, and IT solutions using Java, JavaScript, React, Flutter, and cloud platforms. My work focuses on clean design, reliable performance, and easy maintenance.",
+  "resumeUrl": "assets/resume.pdf"
+>>>>>>> 43499cf989a074f6eaa533c1bd2197570148b5ce
 }
