@@ -30,7 +30,10 @@
       "iconClass": "bx-cog",
       "colorClass": "purple",
       "badges": [
-        "Shell Scripting"
+        "Shell Scripting",
+        "Perl (Scripting)",
+        "REST APIs",
+        "Supabase"
       ]
     },
     {
@@ -44,12 +47,6 @@
         "Figma",
         "Netlify"
       ]
-    },
-    {
-      "title": "LMS Management",
-      "iconClass": "bx bx-book-library",
-      "colorClass": "green",
-      "badges": []
     }
   ]
 }
