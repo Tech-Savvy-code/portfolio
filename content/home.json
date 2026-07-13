@@ -1,14 +1,14 @@
 {
+  "primaryButtonText": "View Projects",
+  "secondaryButtonUrl": "assets/resume.pdf",
+  "intro": "I am Opiyo Nickson, a software developer who builds Android apps, web systems, and IT solutions that solve real-world problems with modern, scalable technology.",
+  "imageAlt": "Opiyo Nickson",
+  "secondaryButtonText": "Download CV",
   "headline": "Opiyo Nickson - Software Developer",
+  "primaryButtonUrl": "#projects",
+  "image": "/assets/opiyo.jpeg",
   "roles": [
     "Android, React Native & Web Developer",
     "IT Systems Specialist"
-  ],
-  "intro": "I am Opiyo Nickson, a software developer who builds Android apps, web systems, and IT solutions that solve real-world problems with modern, scalable technology.",
-  "image": "assets/me.jpg",
-  "imageAlt": "Opiyo Nickson",
-  "primaryButtonText": "View Projects",
-  "primaryButtonUrl": "#projects",
-  "secondaryButtonText": "Download CV",
-  "secondaryButtonUrl": "assets/resume.pdf"
+  ]
 }
