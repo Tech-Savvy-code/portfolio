@@ -4,25 +4,51 @@
       "title": "Mobile Development",
       "iconClass": "bx-mobile-alt",
       "colorClass": "green",
-      "badges": ["Android (Java)", "React Native", "Firebase Auth", "Realtime Database", "Material UI"]
+      "badges": [
+        "Android (Java)",
+        "React Native",
+        "Firebase Auth",
+        "Realtime Database",
+        "Material UI"
+      ]
     },
     {
       "title": "Web Development",
       "iconClass": "bx-code-alt",
       "colorClass": "blue",
-      "badges": ["HTML5", "CSS3", "JavaScript", "React", "Responsive Design", "Netlify"]
+      "badges": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "React",
+        "Responsive Design",
+        "Netlify"
+      ]
     },
     {
       "title": "Backend & Scripting",
       "iconClass": "bx-cog",
       "colorClass": "purple",
-      "badges": ["Firebase", "Supabase", "MySQL", "REST APIs", "Shell Scripting"]
+      "badges": [
+        "Shell Scripting"
+      ]
     },
     {
       "title": "Tools & Platforms",
       "iconClass": "bx-wrench",
       "colorClass": "orange",
-      "badges": ["Git & GitHub", "Android Studio", "VS Code", "Figma", "Netlify"]
+      "badges": [
+        "Git & GitHub",
+        "Android Studio",
+        "VS Code",
+        "Figma",
+        "Netlify"
+      ]
+    },
+    {
+      "title": "LMS Management",
+      "iconClass": "<i class=\"bx bx-book-library bx-remove-padding\" />",
+      "colorClass": "green"
     }
   ]
 }
