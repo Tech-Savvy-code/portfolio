@@ -48,6 +48,11 @@
         "Figma",
         "Netlify"
       ]
+    },
+    {
+      "title": "Learnining Management System",
+      "colorClass": "purple",
+      "iconClass": "bx bx-education"
     }
   ]
 }
