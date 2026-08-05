@@ -1,12 +1,12 @@
 {
   "primaryButtonText": "View Projects",
   "secondaryButtonUrl": "assets/resume.pdf",
-  "intro": "I am Opiyo Nickson Lukwisa, a software developer who builds Android apps, web systems, and IT solutions that solve real-world problems with modern, scalable technology.",
+  "intro": "I am Opiyo Nickson, a software developer who builds Android apps, web systems, and IT solutions that solve real-world problems with modern, scalable technology.",
   "imageAlt": "Opiyo Nickson",
   "secondaryButtonText": "Download CV",
   "headline": "Opiyo Nickson - Software Developer",
   "primaryButtonUrl": "#projects",
-  "image": "/assets/me.jpg",
+  "image": "/assets/me-1-.jpg",
   "roles": [
     "Android, React Native & Web Developer",
     "IT Systems Specialist"
