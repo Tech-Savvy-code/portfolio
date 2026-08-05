@@ -149,7 +149,11 @@ function renderAbout(data) {
   const aboutContent = document.querySelector('.about-content');
   if (!aboutContent) return;
 
-  const paragraphs = Array.isArray(data.paragraphs) ? data.paragraphs : [data.intro, data.description].filter(Boolean);
+  const paragraphs = Array.isArray(data.paragraphs)
+    ? data.paragraphs
+        .map(paragraph => typeof paragraph === 'string' ? paragraph : paragraph?.paragraph)
+        .filter(Boolean)
+    : [data.intro, data.description].filter(Boolean);
   const heading = data.heading || 'About';
   const highlight = data.highlight || 'Me';
 

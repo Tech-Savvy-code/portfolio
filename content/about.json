@@ -1,5 +1,13 @@
 {
-  "intro": "I'm Opiyo Nickson Lukwisa, an Android, React Native & Web Developer and IT Systems Specialist.",
-  "description": "I build responsive apps, web systems, and IT solutions using Java, JavaScript, React, Flutter, and cloud platforms. My work focuses on clean design, reliable performance, and easy maintenance.",
-  "resumeUrl": "assets/resume.pdf"
+  "heading": "About",
+  "highlight": "Me",
+  "image": "/assets/me-1-.jpg",
+  "imageAlt": "Opiyo Nickson",
+  "paragraphs": [
+    "I'm Opiyo Nickson Lukwisa, an Android, React Native and Web Developer, and IT Systems Specialist.",
+    "I build responsive apps, web systems, and IT solutions using Java, JavaScript, React, React Native, Firebase, Flutter, and cloud platforms.",
+    "My work focuses on clean design, reliable performance, easy maintenance, and practical digital solutions that solve real-world problems."
+  ],
+  "resumeUrl": "/assets/resume.pdf",
+  "resumeButtonText": "View Resume"
 }
