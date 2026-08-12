@@ -1,8 +1,7 @@
 {
+  "copyright": "© Opiyo Nickson | All rights reserved",
+  "ctaTitle": "Let's work together",
   "brandFirst": "Opiyo",
-  "brandLast": "Nickson",
-  "description": "Android & Web Developer | IT Systems Specialist crafting modern digital experiences, system automation, and secure interfaces for real users.",
-  "quickLinksTitle": "Quick Links",
   "quickLinks": [
     {
       "label": "FAQ",
@@ -21,11 +20,12 @@
       "url": "#contact"
     }
   ],
-  "ctaTitle": "Let's work together",
-  "ctaText": "Interested in a new project or collaboration? Reach out and let's build something professional and impactful.",
+  "quickLinksTitle": "Quick Links",
+  "ctaButtonUrl": "/assets/opiyo_nickson-updated-_cv.pdf",
   "ctaButtonText": "Download CV",
-  "ctaButtonUrl": "assets/resume.pdf",
-  "copyright": "© Opiyo Nickson | All rights reserved",
-  "sitemapLabel": "Sitemap:",
-  "sitemapUrl": "https://opiyotech.netlify.app/sitemap.xml"
+  "sitemapUrl": "https://opiyotech.netlify.app/sitemap.xml",
+  "description": "Android & Web Developer | IT Systems Specialist crafting modern digital experiences, system automation, and secure interfaces for real users.",
+  "brandLast": "Nickson",
+  "ctaText": "Interested in a new project or collaboration? Reach out and let's build something professional and impactful.",
+  "sitemapLabel": "Sitemap:"
 }
